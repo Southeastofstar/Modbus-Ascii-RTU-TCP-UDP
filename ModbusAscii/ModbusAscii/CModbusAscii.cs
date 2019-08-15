@@ -6,8 +6,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
 
-using ThreadLock;
-
 namespace ModbusAscii
 {
     //【特别声明：此代码为彭东南个人原创，如需要商用Modbus-Ascii/RTU/TCP/UDP(支持跨线程读写操作)，请联系作者打赏或者购买DLL或源代码】
