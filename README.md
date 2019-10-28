@@ -5,4 +5,4 @@ C# Modbus-Ascii/RTU/TCP/UDP Communication
 
 基于Modbus-Ascii/RTU/TCP/UDP通讯协议的详细代码，包括读写不同类型数据的通讯数据帧格式，以及测试记录等。
 
-Detailed C#codes for Modbus-Ascii/RTU/TCP/UDP communication, support to read or write different types of data, also includes the details about the data frame format and the test records. If you need the codes that support reading / writing all types of data, please contact with me via Email(southeastofstar@163.com) or WeChat(southeastofstar).
+Detailed C#codes for Modbus-Ascii/RTU/TCP/UDP communication, support to read or write different types of data, also includes the details about the data frame format and the test records. It's limited to use the DLL for 10 minutes each time, if you need to use them with full rights, please contact with me via Email(southeastofstar@163.com) or WeChat(southeastofstar).
