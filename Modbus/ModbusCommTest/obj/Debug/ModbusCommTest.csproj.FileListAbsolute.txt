@@ -1,0 +1,32 @@
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\obj\Debug\Test.exe
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\obj\Debug\Test.pdb
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\obj\Debug\ModbusCommTest.csprojResolveAssemblyReference.cache
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\obj\Debug\Test.Form1.resources
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\obj\Debug\Test.Properties.Resources.resources
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\obj\Debug\ModbusCommTest.csproj.GenerateResource.Cache
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\Test.exe
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\Test.pdb
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\Converter.dll
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\ModbusComm.dll
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\ThreadLock.dll
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\Converter.pdb
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\ModbusComm.pdb
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\ModbusComm.xml
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\ThreadLock.pdb
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\ThreadLock.xml
+F:\Project Data\VS2012 Projects\A-自\PengDongNanWorkSet\ModbusCommTest\bin\Debug\Converter.xml
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\Converter.dll
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\Modbus.dll
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\ThreadLock.dll
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\Modbus.pdb
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\Modbus.xml
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\Converter.xml
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\ThreadLock.xml
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\obj\Debug\ModbusCommTest.csprojResolveAssemblyReference.cache
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\obj\Debug\Test.Form1.resources
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\obj\Debug\ModbusCommTest.csproj.GenerateResource.Cache
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\ModbusCommTest.exe
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\bin\Debug\ModbusCommTest.pdb
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\obj\Debug\ModbusCommTest.Properties.Resources.resources
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\obj\Debug\ModbusCommTest.exe
+F:\AllGitHubs\Modbus-Ascii\Modbus\ModbusCommTest\obj\Debug\ModbusCommTest.pdb

@@ -1,0 +1,3274 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Converter</name>
+    </assembly>
+    <members>
+        <member name="T:Converter.BytesFormat">
+            <summary>
+            多字节数据的格式
+            </summary>
+        </member>
+        <member name="F:Converter.BytesFormat.ABCD">
+            <summary>
+            按照顺序排序：[0][1][2][3].... - 0
+            </summary>
+        </member>
+        <member name="F:Converter.BytesFormat.BADC">
+            <summary>
+            按照单字反转：[1][0][3][2] - 1
+            </summary>
+        </member>
+        <member name="F:Converter.BytesFormat.CDAB">
+            <summary>
+            按照双字反转：[2][3][0][1] - 2
+            </summary>
+        </member>
+        <member name="F:Converter.BytesFormat.DCBA">
+            <summary>
+            按照倒序排序：[3][2][1][0].... - 3
+            </summary>
+        </member>
+        <member name="T:Converter.ByteCount">
+            <summary>
+            不同数据类型对应的字节数量枚举
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.Byte">
+            <summary>
+            字节 - 1字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.Short">
+            <summary>
+            16位整数 - 2字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.UShort">
+            <summary>
+            16位整数 - 2字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.Int">
+            <summary>
+            32位整数 - 4字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.UInt">
+            <summary>
+            32位整数 - 4字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.Float">
+            <summary>
+            32位浮点数 - 4字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.Double">
+            <summary>
+            64位双精度符点数 - 8字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.Long">
+            <summary>
+            64位整数 - 8字节
+            </summary>
+        </member>
+        <member name="F:Converter.ByteCount.ULong">
+            <summary>
+            64位整数 - 8字节
+            </summary>
+        </member>
+        <member name="T:Converter.HexStringCount">
+            <summary>
+            不同数据类型对应的16进制字符数量枚举
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.SByte">
+            <summary>
+            字节 - 2个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.Byte">
+            <summary>
+            字节 - 2个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.Short">
+            <summary>
+            16位整数 - 4个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.UShort">
+            <summary>
+            16位整数 - 4个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.Int">
+            <summary>
+            32位整数 - 8个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.UInt">
+            <summary>
+            32位整数 - 8个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.Float">
+            <summary>
+            32位浮点数 - 8个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.Double">
+            <summary>
+            64位双精度符点数 - 16个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.Long">
+            <summary>
+            64位整数 - 16个字符
+            </summary>
+        </member>
+        <member name="F:Converter.HexStringCount.ULong">
+            <summary>
+            64位整数 - 16个字符
+            </summary>
+        </member>
+        <member name="T:Converter.CConverter">
+            <summary>
+            字节数组转化为各数据类型的转化类
+            授权声明：本软件作者将代码开源，仅用于交流学习。如果有商用需求，请联系软件作者协商相关事宜；否则，软件作者保留相关法律赋予的权利。
+            免责声明：使用本软件的相关人员必须仔细检查代码并负全部责任，软件作者不承担任何可能的损失(包含可抗力和不可抗力因素)。
+            </summary>
+        </member>
+        <member name="M:Converter.CConverter.Reorder2BytesData(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            【只取整数倍字节，其余不处理】
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的2字节数组用于进行数据类型转换
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <returns>实际2字节数组字节信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Reorder4BytesData(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            【只取整数倍字节，其余不处理】
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的4字节数组用于进行数据类型转换
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <returns>实际4字节数组字节信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Reorder8BytesData(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            【只取整数倍字节，其余不处理】
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的8字节数组用于进行数据类型转换
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <returns>实际8字节数组字节信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.ReorderBytesData(System.Byte[],Converter.BytesFormat,Converter.ByteCount,System.UInt32)">
+            <summary>
+            【只取整数倍字节，其余不处理】
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的8字节数组用于进行数据类型转换
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="TargetByteCount">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <returns>实际8字节数组字节信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Reorder2HexStrData(System.String,Converter.BytesFormat,System.UInt32)">
+            <summary>
+            【只取整数倍字符串，其余不处理】
+            依照特定编码格式，调整字符串中各个字符的位置并返回，可以依次截取2个调整后的2个字符进行数据类型转换，如short,ushort
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始截取字符串进行转换</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.Reorder4HexStrData(System.String,Converter.BytesFormat,System.UInt32)">
+            <summary>
+            【只取整数倍字符串，其余不处理】
+            依照特定编码格式，调整字符串中各个字符的位置并返回，可以依次截取4个调整后的2个字符进行数据类型转换，如int, uint,float
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <param name="TargetBytesFormat">目标字符串的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始截取字符串进行转换</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.Reorder8HexStrData(System.String,Converter.BytesFormat,System.UInt32)">
+            <summary>
+            【只取整数倍字符串，其余不处理】
+            依照特定编码格式，调整字符串中各个字符的位置并返回，可以依次截取2个调整后的8个字符进行数据类型转换，如long,ulong,double
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <param name="TargetBytesFormat">目标字符串的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始截取字符串进行转换</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ReorderHexStrData(System.String,Converter.BytesFormat,Converter.ByteCount,System.UInt32)">
+            <summary>
+            【只取整数倍字符串，其余不处理】
+            依照特定编码格式，调整字符串中各个字符的位置并返回，可以依次截取指定个调整后的2个字符进行数据类型转换
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <param name="TargetBytesFormat">目标字符串的编码格式</param>
+            <param name="TargetByteCount">目标字符串的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始截取字符串进行转换</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToDouble(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的双精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的双精度浮点数</returns>
+            <description> </description>
+        </member>
+        <member name="M:Converter.CConverter.ToInt64(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt64(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt16(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt16(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt32(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt32(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToFloat(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的单精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的单精度浮点数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToDoubleArray(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的双精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的双精度浮点数</returns>
+            <description> </description>
+        </member>
+        <member name="M:Converter.CConverter.ToInt64Array(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt64Array(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt16Array(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt16Array(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt32Array(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt32Array(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToFloatArray(System.Byte[],Converter.BytesFormat,System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的单精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="TargetBytesFormat">多字节数据的格式</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的单精度浮点数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToDouble(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的双精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的双精度浮点数</returns>
+            <description> </description>
+        </member>
+        <member name="M:Converter.CConverter.ToInt64(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt64(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt16(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt16(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt32(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt32(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToFloat(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的单精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的单精度浮点数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToDoubleArray(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的双精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的双精度浮点数</returns>
+            <description> </description>
+        </member>
+        <member name="M:Converter.CConverter.ToInt64Array(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt64Array(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的八个字节转换来的 64 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由八个字节构成、从 StartIndex 开始的 64 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt16Array(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt16Array(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的两个字节转换来的 16 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由两个字节构成、从 StartIndex 开始的 16 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToInt32Array(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位有符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位有符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToUInt32Array(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的 32 位无符号整数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的 32 位无符号整数</returns>
+        </member>
+        <member name="M:Converter.CConverter.ToFloatArray(System.Byte[],System.UInt32)">
+            <summary>
+            返回由字节数组中指定位置的四个字节转换来的单精度浮点数，如果传入的参数不合理就会返回0值
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="StartIndex">BytesValue 内的起始位置</param>
+            <returns>返回结果:由四个字节构成、从 StartIndex 开始的单精度浮点数</returns>
+        </member>
+        <member name="M:Converter.CConverter.RemoveSplitChars(System.String,System.String)">
+            <summary>
+            移除字符串中指定的分隔符
+            </summary>
+            <param name="TargetStr">目标字符串</param>
+            <param name="SplitChars">分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.HexStringSplitByCharToASCIIString(System.String,System.String)">
+            <summary>
+            将16进制字符串(用字符进行分隔)转换为ASCII码字符串
+            </summary>
+            <param name="HexStringSplitByChar">16进制字符串(用字符进行分隔)</param>
+            <param name="SplitChar">分割字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.HexStringSplitByCharToString(System.String,System.String)">
+            <summary>
+            将16进制字符串(用字符进行分隔)转换为RTU码字符串
+            </summary>
+            <param name="HexStringSplitByChar">16进制字符串(用字符进行分隔)</param>
+            <param name="SplitChar">分割字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.Byte1To2HexStr(System.Byte)">
+            <summary>
+            将字节转换为16进制字符串，适用于 byte
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes1To2HexStr(System.SByte[])">
+            <summary>
+            将字节数组转换为16进制字符串，且用字符进行分隔，适用于 sbyte
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes1To2HexStr(System.Byte[],System.String)">
+            <summary>
+            将字节数组转换为16进制字符串，且用字符进行分隔，适用于 byte
+            </summary>
+            <param name="BytesValue">字节数组</param>
+            <param name="SplitChar">分割字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes2To4HexStr(System.Byte[],Converter.BytesFormat,System.UInt32,System.String)">
+            <summary>
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的2字节数组对应的16进行字符串，适用于 short/ushort
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <param name="SplitChars">各个字节之间的分割字符串，默认值为无</param>
+            <returns>实际2字节数组字节对应的16进行字符串信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes4To8HexStr(System.Byte[],Converter.BytesFormat,System.UInt32,System.String)">
+            <summary>
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的4字节数组对应的16进行字符串，适用于 int/uint/float
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <param name="SplitChars">各个字节之间的分割字符串，默认值为无</param>
+            <returns>实际4字节数组字节对应的16进行字符串信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes8To16HexStr(System.Byte[],Converter.BytesFormat,System.UInt32,System.String)">
+            <summary>
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的8字节数组对应的16进行字符串，适用于 double/long/ulong
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <param name="SplitChars">各个字节之间的分割字符串，默认值为无</param>
+            <returns>实际8字节数组字节对应的16进行字符串信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes2To4HexStr(System.Byte[],System.UInt32)">
+            <summary>
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的2字节数组对应的16进行字符串，适用于 short/ushort
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <returns>实际2字节数组字节对应的16进行字符串信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes4To8HexStr(System.Byte[],System.UInt32)">
+            <summary>
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的4字节数组对应的16进行字符串，适用于 int/uint/float
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <returns>实际4字节数组字节对应的16进行字符串信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Bytes8To16HexStr(System.Byte[],System.UInt32)">
+            <summary>
+            依照特定编码格式，调整字节数组中各个字节的位置并返回一个调整后的8字节数组对应的16进行字符串，适用于 double/long/ulong
+            </summary>
+            <param name="BytesValue">数据字节</param>
+            <param name="StartIndex">起始索引，默认值为0，从此位置开始转换对应数量字节的顺序</param>
+            <returns>实际8字节数组字节对应的16进行字符串信息</returns>
+        </member>
+        <member name="M:Converter.CConverter.Hex4StrTo2Bytes(System.String,Converter.BytesFormat)">
+            <summary>
+            【只取4的整数倍字符串，其余不处理】
+            依照特定编码格式，调整字符串中各个字符的位置并返回一个调整后的2字节数组
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns>实际2*N字节数组</returns>
+        </member>
+        <member name="M:Converter.CConverter.Hex8StrTo4Bytes(System.String,Converter.BytesFormat)">
+            <summary>
+            【只取8的整数倍字符串，其余不处理】
+            依照特定编码格式，调整字符串中各个字符的位置并返回一个调整后的4*N字节数组
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns>实际4*N字节数组字节</returns>
+        </member>
+        <member name="M:Converter.CConverter.Hex16StrTo8Bytes(System.String,Converter.BytesFormat)">
+            <summary>
+            【只取16的整数倍字符串，其余不处理】
+            依照特定编码格式，调整字符串中各个字符的位置并返回一个调整后的8*N字节数组
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns>实际8*N字节数组</returns>
+        </member>
+        <member name="M:Converter.CConverter.Hex4StrTo2Bytes(System.String)">
+            <summary>
+            【只取4的整数倍字符串，其余不处理】
+            将16进制字符串转化为字节数组，返回一个调整后的2字节数组
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <returns>实际2*N字节数组</returns>
+        </member>
+        <member name="M:Converter.CConverter.Hex8StrTo4Bytes(System.String)">
+            <summary>
+            【只取8的整数倍字符串，其余不处理】
+            将16进制字符串转化为字节数组，返回一个调整后的4*N字节数组
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <returns>实际4*N字节数组字节</returns>
+        </member>
+        <member name="M:Converter.CConverter.Hex16StrTo8Bytes(System.String)">
+            <summary>
+            【只取16的整数倍字符串，其余不处理】
+            将16进制字符串转化为字节数组，返回一个调整后的8*N字节数组
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <returns>实际8*N字节数组</returns>
+        </member>
+        <member name="M:Converter.CConverter.Hex2StrTo1Byte(System.String)">
+            <summary>
+            【只取2的整数倍字符串，其余不处理】
+            将16进制字符串转化为字节数组，返回一个转换后的字节数组
+            </summary>
+            <param name="HexStrValue">16进制字符串</param>
+            <returns>实际N字节数组</returns>
+        </member>
+        <member name="M:Converter.CConverter.CopyBytes(System.Byte[],System.UInt32,System.UInt32)">
+            <summary>
+            从目标字节数组中截取部分数组并返回其值
+            </summary>
+            <param name="TargetBytes">目标字节数组</param>
+            <param name="Count">截取字节长度</param>
+            <param name="StartIndex">开始截取的位置索引号，默认从0开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.JoinTwoByteArrays(System.Byte[],System.Byte[])">
+            <summary>
+            拼接两个字节数组，将第二个字节数组拼接在第一个字节数组后面
+            </summary>
+            <param name="FirstBytes"></param>
+            <param name="SecondBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.TwoHexCharsToByte(System.String)">
+            <summary>
+            将2位16进制数字符串转换为10进制byte值，例：FF - 255
+            </summary>
+            <param name="TwoHexChars">2位16进制数字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ByteToTwoHexChars(System.Byte)">
+            <summary>
+            字节转换为2为16进制字符
+            </summary>
+            <param name="ByteData">字节</param>
+            <returns>是否成功执行</returns>
+        </member>
+        <member name="M:Converter.CConverter.ByteToBitArray(System.Byte)">
+            <summary>
+            字节值按位转换为布尔数组
+            </summary>
+            <param name="ByteValue">字节值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ByteToBitArray(System.Byte[])">
+            <summary>
+            字节值按位转换为布尔数组
+            </summary>
+            <param name="ByteValue">字节值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.BitArrayToByte(System.Boolean[])">
+            <summary>
+            布尔数组转换为字节数组
+            </summary>
+            <param name="BitValue">布尔数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int16,Converter.BytesFormat)">
+            <summary>
+            将short值转换为字节数组
+            </summary>
+            <param name="Value">short值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt16,Converter.BytesFormat)">
+            <summary>
+            将ushort值转换为字节数组
+            </summary>
+            <param name="Value">ushort值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int32,Converter.BytesFormat)">
+            <summary>
+            将int值转换为字节数组
+            </summary>
+            <param name="Value">int值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt32,Converter.BytesFormat)">
+            <summary>
+            将uint值转换为字节数组
+            </summary>
+            <param name="Value">uint值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Single,Converter.BytesFormat)">
+            <summary>
+            将float值转换为字节数组
+            </summary>
+            <param name="Value">float值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Double,Converter.BytesFormat)">
+            <summary>
+            将double值转换为字节数组
+            </summary>
+            <param name="Value">double值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int64,Converter.BytesFormat)">
+            <summary>
+            将long值转换为字节数组
+            </summary>
+            <param name="Value">long值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt64,Converter.BytesFormat)">
+            <summary>
+            将ulong值转换为字节数组
+            </summary>
+            <param name="Value">ulong值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int16)">
+            <summary>
+            将short值转换为字节数组
+            </summary>
+            <param name="Value">short值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt16)">
+            <summary>
+            将ushort值转换为字节数组
+            </summary>
+            <param name="Value">ushort值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int32)">
+            <summary>
+            将int值转换为字节数组
+            </summary>
+            <param name="Value">int值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt32)">
+            <summary>
+            将uint值转换为字节数组
+            </summary>
+            <param name="Value">uint值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Single)">
+            <summary>
+            将float值转换为字节数组
+            </summary>
+            <param name="Value">float值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Double)">
+            <summary>
+            将double值转换为字节数组
+            </summary>
+            <param name="Value">double值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int64)">
+            <summary>
+            将long值转换为字节数组
+            </summary>
+            <param name="Value">long值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt64)">
+            <summary>
+            将ulong值转换为字节数组
+            </summary>
+            <param name="Value">ulong值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int16[],Converter.BytesFormat)">
+            <summary>
+            将short数组值转换为字节数组
+            </summary>
+            <param name="Value">short值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt16[],Converter.BytesFormat)">
+            <summary>
+            将ushort数组值转换为字节数组
+            </summary>
+            <param name="Value">ushort值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int32[],Converter.BytesFormat)">
+            <summary>
+            将int值转换为字节数组
+            </summary>
+            <param name="Value">int值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt32[],Converter.BytesFormat)">
+            <summary>
+            将uint值转换为字节数组
+            </summary>
+            <param name="Value">uint值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Single[],Converter.BytesFormat)">
+            <summary>
+            将float值转换为字节数组
+            </summary>
+            <param name="Value">float值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Double[],Converter.BytesFormat)">
+            <summary>
+            将double值转换为字节数组
+            </summary>
+            <param name="Value">double值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int64[],Converter.BytesFormat)">
+            <summary>
+            将long值转换为字节数组
+            </summary>
+            <param name="Value">long值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt64[],Converter.BytesFormat)">
+            <summary>
+            将ulong值转换为字节数组
+            </summary>
+            <param name="Value">ulong值</param>
+            <param name="TargetBytesFormat">目标字节数组的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int16[])">
+            <summary>
+            将short数组值转换为字节数组
+            </summary>
+            <param name="Value">short值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt16[])">
+            <summary>
+            将ushort数组值转换为字节数组
+            </summary>
+            <param name="Value">ushort值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int32[])">
+            <summary>
+            将int值转换为字节数组
+            </summary>
+            <param name="Value">int值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt32[])">
+            <summary>
+            将uint值转换为字节数组
+            </summary>
+            <param name="Value">uint值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Single[])">
+            <summary>
+            将float值转换为字节数组
+            </summary>
+            <param name="Value">float值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Double[])">
+            <summary>
+            将double值转换为字节数组
+            </summary>
+            <param name="Value">double值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.Int64[])">
+            <summary>
+            将long值转换为字节数组
+            </summary>
+            <param name="Value">long值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.ToBytes(System.UInt64[])">
+            <summary>
+            将ulong值转换为字节数组
+            </summary>
+            <param name="Value">ulong值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.IntToHexString(System.Int32)">
+            <summary>
+            将int整型值转换为4个字符的16进制字符串
+            </summary>
+            <param name="IntValue">int整型值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.HexStringToInt(System.String)">
+            <summary>
+            将4个字符的16进制字符串转换为int整型值
+            </summary>
+            <param name="HexString">4个字符的16进制字符串</param>
+            <returns>int整型值</returns>
+        </member>
+        <member name="M:Converter.CConverter.HexStringToLong(System.String)">
+            <summary>
+            将16进制字符串转换为long整型值
+            </summary>
+            <param name="HexString">16进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.CConverter.VerifyHexString(System.String)">
+            <summary>
+            验证16进制字符串的合法性，并返回过滤后的16进制正确字符串
+            </summary>
+            <param name="HexString"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Converter.CConverter.BigInt">
+            <summary>
+            表示任意大的带符号整数
+            </summary>
+        </member>
+        <member name="F:Converter.CConverter.objComplex">
+            <summary>
+            复数
+            </summary>
+        </member>
+        <member name="P:Converter.CConverter.Author">
+            <summary>
+            软件作者：彭东南, southeastofstar@163.com
+            </summary>
+        </member>
+        <member name="P:Converter.CConverter.HexUpperChars">
+            <summary>
+            全部16进制字符数组：0~9，A~F
+            </summary>
+        </member>
+        <member name="T:Converter.eBaudRate">
+            <summary>
+            串口通讯波特率：bps
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_UserDefine">
+            <summary>
+            波特率(bps)：用户自定义
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_75">
+            <summary>
+            波特率(bps)：75
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_110">
+            <summary>
+            波特率(bps)：110
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_134">
+            <summary>
+            波特率(bps)：134
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_150">
+            <summary>
+            波特率(bps)：150
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_300">
+            <summary>
+            波特率(bps)：300
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_600">
+            <summary>
+            波特率(bps)：600
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_1200">
+            <summary>
+            波特率(bps)：1200
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_1800">
+            <summary>
+            波特率(bps)：1800
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_2400">
+            <summary>
+            波特率(bps)：2400
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_4800">
+            <summary>
+            波特率(bps)：4800
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_7200">
+            <summary>
+            波特率(bps)：7200
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_9600">
+            <summary>
+            波特率(bps)：9600
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_14400">
+            <summary>
+            波特率(bps)：14400
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_19200">
+            <summary>
+            波特率(bps)：19200
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_38400">
+            <summary>
+            波特率(bps)：38400
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_57600">
+            <summary>
+            波特率(bps)：57600
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_115200">
+            <summary>
+            波特率(bps)：115200
+            </summary>
+        </member>
+        <member name="F:Converter.eBaudRate.Rate_128000">
+            <summary>
+            ：128000
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.CCRC">
+            <summary>
+            Modbus-RTU通讯模式下，计算CRC校验值
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CCRC.CalcCRC(System.Byte[],System.Int32)">
+            <summary>
+            计算循环冗余码校验值(2个字节) - 发送时要将CRC校验值的高低字节交换位置：[1][0]，不能按照原始顺序：[0][1]；
+            CRC - Cyclical Redundancy Check
+            </summary>
+            <param name="BytesData">用来计算CRC的字节数组值</param>
+            <param name="SetCalcLengthOfBytes"></param>
+            <returns>循环冗余码校验值(2个字节)</returns>
+        </member>
+        <member name="M:Converter.Modbus.CCRC.CheckCRCOfReceivedData(System.Byte[])">
+            <summary>
+            检查接收到的数据帧里面的CRC是否匹配OK，如果不匹配就代表数据发生错误，计算方式：将收到的字节数组长度减去2，然后计算CRC
+            </summary>
+            <param name="ReceivedRTUFrame">接收到的数据帧字节数组</param>
+            <returns>true - 接收到的数据帧无错误; false - 接收到的数据帧有错误</returns>
+        </member>
+        <member name="F:Converter.Modbus.CCRC.CRCMatchTable">
+            <summary>
+            CRC校验码匹配表：32*8 = 256
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.CCRC.Author">
+            <summary>
+            软件作者：彭东南, southeastofstar@163.com
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.Chinese">
+            <summary>
+            Modbus通讯相关信息的中文版
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.IModbusInfo">
+            <summary>
+            Modbus通讯相关描述信息的接口
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ReadCoil">
+            <summary>
+            【读】读取线圈 - 0x01
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ReadInputSignal">
+            <summary>
+            【读】读取离散量(获取一组开关输入的当前状态) - 0x02
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ReadRegister">
+            <summary>
+            【读】读取一个或多个保持寄存器，取得当前的二进制值 - 0x03
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ReadInputRegister">
+            <summary>
+            【读】读取一个或多个输入寄存器，取得当前的二进制值 - 0x04
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ReadErrorStatus">
+            <summary>
+            【读】读取异常状态，取得 8 个内部线圈的通断状态，这 8 个线圈的地址由控制器决定 - 0x07
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.SendBackCheckToSlave">
+            <summary>
+            【读】回送诊断校验：把诊断校验报文送从机，以对通信处理进行评鉴 - 0x08
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.MasterAskSlaveToReportSlaveID">
+            <summary>
+            【读】报告从机标识：可使主机判断编址从机的类型及该从机运行指示灯的状态 - 0x11
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.WriteCoil">
+            <summary>
+            【写】写单个线圈，强置一个逻辑线圈的通断状态 - 0x05
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.WriteRegister">
+            <summary>
+            【写】写单个保持寄存器，把具体二进制值写入一个保存寄存器 - 0x06
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.WriteMultiCoil">
+            <summary>
+            【写】写多个线圈：强置一串连续逻辑线圈的通断 - 0x0F
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.WriteMultiRegister">
+            <summary>
+            【写】写多个保持寄存器：把具体的二进制值装入一串连续的保持寄存器 - 0x10
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ResetCommLinkRoute">
+            <summary>
+            【写】重置通信链路：发生非可修改错误后，使从机复位于已知状态，可重置顺序字节 - 0x13
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.None">
+            <summary>
+            无错误
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.IllegalFunction">
+            <summary>
+            非法功能码 - 0x01：对于服务器或从站来说，询问中接收到的功能码是不可允许的操作。这也许是因为功能码仅仅适用于新设备而在被选单元中是不可实现的。同时，还指出服务器或从站在错误状态中处理这种请求，例如：因为它是未配置的，并且要求返回寄存器值。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.AddressOverrange">
+            <summary>
+            非法数据地址 - 0x02：对应服务器或从站来说，询问中接收到的数据地址是不可允许的地址。特别是，参考号和传输长度的组合是无效的。对于带有100个寄存器的控制器来说，带有偏移量 96 和长度 4 的请求会成功，带有偏移量 96 和长度 5 的请求将产生异常码 02.
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ReadLengthOverrange">
+            <summary>
+            读取长度超过最大值，非法数据值 - 0x03：对于服务器或从站来说，询问中包括的值是不可允许的值。这个值指示了组合请求剩余结构中的故障，例如：隐含长度是不正确的。并不意味着，因为 MODBUS 协议不知道任何特殊寄存器的任何特殊值的重要意义，寄存器中被提交存储的数据项有一个应用程序期望之外的值。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.ReadWriteException">
+            <summary>
+            读写异常，从站设备故障 - 0x04：当服务器或从站正在设法执行请求的操作时，产生不可重新获得的差错。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.Acknowledgement">
+            <summary>
+            确认 - 0x05：与编程命令一起使用。服务器或从站已经接受请求，并且正在处理这个请求，但是需要长的持续时间进行这些操作。返回这个响应防止在客户机或主站中发生超时错误。客户机或主站可以继续发送轮询程序完成报文来确定是否完成处理。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.SlaveIsBusy">
+            <summary>
+            从属设备忙 - 0x06：与编程命令一起使用。服务器或从站正在处理长持续时间的程序命令。当服务器或从站空闲时，用户或主机应该稍后重新传输报文
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.StoraryParityError">
+            <summary>
+            存储奇偶性差错 - 0x08：与功能码 20 和 21 以及参考类型 6 一起使用，指示扩展文件区不能通过一致性校验。服务器或从站设法读取文件记录，但是在存储器红发现一个奇偶校验错误。客户机或者主站可以重新发送请求，但可以在服务器或从站设备上要求服务。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.NotAvailableGatewayPath">
+            <summary>
+            不可用网关路径 - 0x0A：与网关一起使用，指示网关不能为处理请求分配输入端口至输出端口的内部通信路径。通常意味着网关是错误配置的或过载的。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusInfo.NotResponseFromGatewayStation">
+            <summary>
+            网关目标设备响应失败 - 0x0B：与网关一起使用，指示没有从目标设备中获得响应。通常意味着设备未在网络中。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ReadCoil">
+            <summary>
+            【读】读取线圈 - 0x01
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ReadInputSignal">
+            <summary>
+            【读】读取离散量(获取一组开关输入的当前状态) - 0x02
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ReadRegister">
+            <summary>
+            【读】读取一个或多个保持寄存器，取得当前的二进制值 - 0x03
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ReadInputRegister">
+            <summary>
+            【读】读取一个或多个输入寄存器，取得当前的二进制值 - 0x04
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ReadErrorStatus">
+            <summary>
+            【读】读取异常状态，取得 8 个内部线圈的通断状态，这 8 个线圈的地址由控制器决定 - 0x07
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.SendBackCheckToSlave">
+            <summary>
+            【读】回送诊断校验：把诊断校验报文送从机，以对通信处理进行评鉴 - 0x08
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.MasterAskSlaveToReportSlaveID">
+            <summary>
+            【读】报告从机标识：可使主机判断编址从机的类型及该从机运行指示灯的状态 - 0x11
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.WriteCoil">
+            <summary>
+            【写】写单个线圈，强置一个逻辑线圈的通断状态 - 0x05
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.WriteRegister">
+            <summary>
+            【写】写单个保持寄存器，把具体二进制值写入一个保存寄存器 - 0x06
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.WriteMultiCoil">
+            <summary>
+            【写】写多个线圈：强置一串连续逻辑线圈的通断 - 0x0F
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.WriteMultiRegister">
+            <summary>
+            【写】写多个保持寄存器：把具体的二进制值装入一串连续的保持寄存器 - 0x10
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ResetCommLinkRoute">
+            <summary>
+            【写】重置通信链路：发生非可修改错误后，使从机复位于已知状态，可重置顺序字节 - 0x13
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.None">
+            <summary>
+            无错误
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.IllegalFunction">
+            <summary>
+            非法功能码 - 0x01：对于服务器或从站来说，询问中接收到的功能码是不可允许的操作。这也许是因为功能码仅仅适用于新设备而在被选单元中是不可实现的。同时，还指出服务器或从站在错误状态中处理这种请求，例如：因为它是未配置的，并且要求返回寄存器值。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.AddressOverrange">
+            <summary>
+            非法数据地址 - 0x02：对应服务器或从站来说，询问中接收到的数据地址是不可允许的地址。特别是，参考号和传输长度的组合是无效的。对于带有100个寄存器的控制器来说，带有偏移量 96 和长度 4 的请求会成功，带有偏移量 96 和长度 5 的请求将产生异常码 02.
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ReadLengthOverrange">
+            <summary>
+            读取长度超过最大值，非法数据值 - 0x03：对于服务器或从站来说，询问中包括的值是不可允许的值。这个值指示了组合请求剩余结构中的故障，例如：隐含长度是不正确的。并不意味着，因为 MODBUS 协议不知道任何特殊寄存器的任何特殊值的重要意义，寄存器中被提交存储的数据项有一个应用程序期望之外的值。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.ReadWriteException">
+            <summary>
+            读写异常，从站设备故障 - 0x04：当服务器或从站正在设法执行请求的操作时，产生不可重新获得的差错。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.Acknowledgement">
+            <summary>
+            确认 - 0x05：与编程命令一起使用。服务器或从站已经接受请求，并且正在处理这个请求，但是需要长的持续时间进行这些操作。返回这个响应防止在客户机或主站中发生超时错误。客户机或主站可以继续发送轮询程序完成报文来确定是否完成处理。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.SlaveIsBusy">
+            <summary>
+            从属设备忙 - 0x06：与编程命令一起使用。服务器或从站正在处理长持续时间的程序命令。当服务器或从站空闲时，用户或主机应该稍后重新传输报文
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.StoraryParityError">
+            <summary>
+            存储奇偶性差错 - 0x08：与功能码 20 和 21 以及参考类型 6 一起使用，指示扩展文件区不能通过一致性校验。服务器或从站设法读取文件记录，但是在存储器红发现一个奇偶校验错误。客户机或者主站可以重新发送请求，但可以在服务器或从站设备上要求服务。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.NotAvailableGatewayPath">
+            <summary>
+            不可用网关路径 - 0x0A：与网关一起使用，指示网关不能为处理请求分配输入端口至输出端口的内部通信路径。通常意味着网关是错误配置的或过载的。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.Chinese.NotResponseFromGatewayStation">
+            <summary>
+            网关目标设备响应失败 - 0x0B：与网关一起使用，指示没有从目标设备中获得响应。通常意味着设备未在网络中。
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.CLRC">
+            <summary>
+            Modbus-Ascii通讯模式下，计算LRC校验值
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CLRC.Prefix">
+            <summary>
+            起始位字符(:)
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CLRC.Suffix">
+            <summary>
+            结束符(回车+换行)
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CLRC.PrefixByte">
+            <summary>
+            起始位字符(:)的字节
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CLRC.CalcLRCForReceivedStringFromSlave(System.String)">
+            <summary>
+            将客户端返回的字符串信息进行计算LRC，确认匹配OK就返回true，否则返回 false
+            </summary>
+            <param name="ReceivedStringFromSlave">客户端返回的字符串信息</param>
+            <returns>匹配OK就返回true，否则返回 false</returns>
+        </member>
+        <member name="M:Converter.Modbus.CLRC.CalcLRCString(System.String)">
+            <summary>
+            计算LRC值并返回值的16进制字符串
+            </summary>
+            <param name="ModbusAsciiCommand">16进制字符串格式：地址(2个字符) + 功能码(2个字符) + 起始地址(4个字符) + 数据长度(4个字符)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.CLRC.CalcLRCForReceivedBytesFromSlave(System.Byte[])">
+            <summary>
+            将客户端返回的字节信息进行计算LRC，确认匹配OK就返回true，否则返回 false
+            </summary>
+            <param name="ReceivedBytesFromSlave">客户端返回的字节信息</param>
+            <returns>匹配OK就返回true，否则返回 false</returns>
+        </member>
+        <member name="M:Converter.Modbus.CLRC.CalcResultsIncludeLRC(System.String)">
+            <summary>
+            将命令字符串转化为字节，然后计算LRC，并返回计算后的总字节数组
+            </summary>
+            <param name="CmdData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.CLRC.CalcLRCBytes(System.String)">
+            <summary>
+            计算LRC值，返回长度为2的字节数组 -- 格式：地址(2个字符) + 功能码(2个字符) + 起始地址(4个字符) + 数据长度(4个字符)
+            </summary>
+            <param name="ModbusAsciiCommand">16进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.CLRC.CalcLRCBytes(System.Byte[])">
+            <summary>
+            计算LRC值，返回长度为2的字节数组 -- 格式：地址(2个字符) + 功能码(2个字符) + 起始地址(4个字符) + 数据长度(4个字符)
+            </summary>
+            <param name="DataUsedToCalcLRC">用于计算LRC的字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="P:Converter.Modbus.CLRC.Author">
+            <summary>
+            软件作者：彭东南, southeastofstar@163.com
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.CLRC.SuffixBytes">
+            <summary>
+            结束符(回车+换行)的字节数组
+            </summary>
+        </member>
+        <member name="T:Converter.Constants">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.iUseLimit">
+            <summary>
+            使用次数限制
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.iCountForUseLimit">
+            <summary>
+            使用次数计数
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.bSetLimitRightByTime">
+            <summary>
+            true - 使用时间来限制使用权限；false - 使用计数次数来限制使用权限
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.swUsedTime">
+            <summary>
+            使用时间计时
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.iUsedTimeLimit">
+            <summary>
+            允许临时使用10分钟，单位：s
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.bShowedDialogAboutLimitRightIsDue">
+            <summary>
+            显示一次提示对话框
+            </summary>
+        </member>
+        <member name="M:Converter.Constants.AddCount">
+            <summary>
+            加计数，返回值：true - 使用权限到期；false - 使用权限未到期
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Converter.Constants.UseLimitedRightIsDue">
+            <summary>
+            使用权限到期
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.CModbusErrorCode">
+            <summary>
+            授权声明：本软件作者将代码开源，仅用于交流学习。如果有商用需求，请联系软件作者协商相关事宜；否则，软件作者保留相关法律赋予的权利。
+            免责声明：使用本软件的相关人员必须仔细检查代码并负全部责任，软件作者不承担任何可能的损失(包含可抗力和不可抗力因素)。
+            Modbus错误代码
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.IllegalFunction">
+            <summary>
+            非法功能码 - 0x01：对于服务器或从站来说，询问中接收到的功能码是不可允许的操作。这也许是因为功能码仅仅适用于新设备而在被选单元中是不可实现的。同时，还指出服务器或从站在错误状态中处理这种请求，例如：因为它是未配置的，并且要求返回寄存器值。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.AddressOverrange">
+            <summary>
+            非法数据地址 - 0x02：对应服务器或从站来说，询问中接收到的数据地址是不可允许的地址。特别是，参考号和传输长度的组合是无效的。对于带有100个寄存器的控制器来说，带有偏移量 96 和长度 4 的请求会成功，带有偏移量 96 和长度 5 的请求将产生异常码 02.
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.ReadLengthOverrange">
+            <summary>
+            读取长度超过最大值，非法数据值 - 0x03：对于服务器或从站来说，询问中包括的值是不可允许的值。这个值指示了组合请求剩余结构中的故障，例如：隐含长度是不正确的。并不意味着，因为 MODBUS 协议不知道任何特殊寄存器的任何特殊值的重要意义，寄存器中被提交存储的数据项有一个应用程序期望之外的值。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.ReadWriteException">
+            <summary>
+            读写异常，从站设备故障 - 0x04：当服务器或从站正在设法执行请求的操作时，产生不可重新获得的差错。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.Acknowledgement">
+            <summary>
+            确认 - 0x05：与编程命令一起使用。服务器或从站已经接受请求，并且正在处理这个请求，但是需要长的持续时间进行这些操作。返回这个响应防止在客户机或主站中发生超时错误。客户机或主站可以继续发送轮询程序完成报文来确定是否完成处理。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.SlaveIsBusy">
+            <summary>
+            从属设备忙 - 0x06：与编程命令一起使用。服务器或从站正在处理长持续时间的程序命令。当服务器或从站空闲时，用户或主机应该稍后重新传输报文
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.StoraryParityError">
+            <summary>
+            存储奇偶性差错 - 0x08：与功能码 20 和 21 以及参考类型 6 一起使用，指示扩展文件区不能通过一致性校验。服务器或从站设法读取文件记录，但是在存储器红发现一个奇偶校验错误。客户机或者主站可以重新发送请求，但可以在服务器或从站设备上要求服务。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.NotAvailableGatewayPath">
+            <summary>
+            不可用网关路径 - 0x0A：与网关一起使用，指示网关不能为处理请求分配输入端口至输出端口的内部通信路径。通常意味着网关是错误配置的或过载的。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusErrorCode.NotResponseFromGatewayStation">
+            <summary>
+            网关目标设备响应失败 - 0x0B：与网关一起使用，指示没有从目标设备中获得响应。通常意味着设备未在网络中。
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CModbusErrorCode.AnalysisErrorCode(System.Byte[],Converter.Modbus.ModbusCommType)">
+            <summary>
+            解析返回信息的错误代码
+            </summary>
+            <param name="MsgWithErrorCode">从站返回的完整字节数组(含错误信息)</param>
+            <param name="CommType">通讯类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.CModbusErrorCode.Chinese">
+            <summary>
+            设置信息为中文
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CModbusErrorCode.English">
+            <summary>
+            设置信息为英文
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CModbusErrorCode.ErrorInfo(Converter.Modbus.ModbusErrCode)">
+            <summary>
+            获取错误码对应的错误描述
+            </summary>
+            <param name="ErrorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="P:Converter.Modbus.CModbusErrorCode.info">
+            <summary>
+            信息接口
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.ModbusErrCode">
+            <summary>
+            Modbus错误代码枚举
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.None">
+            <summary>
+            无错误
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.IllegalFunction">
+            <summary>
+            非法功能码 - 0x01：对于服务器或从站来说，询问中接收到的功能码是不可允许的操作。这也许是因为功能码仅仅适用于新设备而在被选单元中是不可实现的。同时，还指出服务器或从站在错误状态中处理这种请求，例如：因为它是未配置的，并且要求返回寄存器值。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.AddressOverrange">
+            <summary>
+            非法数据地址 - 0x02：对应服务器或从站来说，询问中接收到的数据地址是不可允许的地址。特别是，参考号和传输长度的组合是无效的。对于带有100个寄存器的控制器来说，带有偏移量 96 和长度 4 的请求会成功，带有偏移量 96 和长度 5 的请求将产生异常码 02.
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.ReadLengthOverrange">
+            <summary>
+            读取长度超过最大值，非法数据值 - 0x03：对于服务器或从站来说，询问中包括的值是不可允许的值。这个值指示了组合请求剩余结构中的故障，例如：隐含长度是不正确的。并不意味着，因为 MODBUS 协议不知道任何特殊寄存器的任何特殊值的重要意义，寄存器中被提交存储的数据项有一个应用程序期望之外的值。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.ReadWriteException">
+            <summary>
+            读写异常，从站设备故障 - 0x04：当服务器或从站正在设法执行请求的操作时，产生不可重新获得的差错。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.Acknowledgement">
+            <summary>
+            确认 - 0x05：与编程命令一起使用。服务器或从站已经接受请求，并且正在处理这个请求，但是需要长的持续时间进行这些操作。返回这个响应防止在客户机或主站中发生超时错误。客户机或主站可以继续发送轮询程序完成报文来确定是否完成处理。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.SlaveIsBusy">
+            <summary>
+            从属设备忙 - 0x06：与编程命令一起使用。服务器或从站正在处理长持续时间的程序命令。当服务器或从站空闲时，用户或主机应该稍后重新传输报文
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.StoraryParityError">
+            <summary>
+            存储奇偶性差错 - 0x08：与功能码 20 和 21 以及参考类型 6 一起使用，指示扩展文件区不能通过一致性校验。服务器或从站设法读取文件记录，但是在存储器红发现一个奇偶校验错误。客户机或者主站可以重新发送请求，但可以在服务器或从站设备上要求服务。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.NotAvailableGatewayPath">
+            <summary>
+            不可用网关路径 - 0x0A：与网关一起使用，指示网关不能为处理请求分配输入端口至输出端口的内部通信路径。通常意味着网关是错误配置的或过载的。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusErrCode.NotResponseFromGatewayStation">
+            <summary>
+            网关目标设备响应失败 - 0x0B：与网关一起使用，指示没有从目标设备中获得响应。通常意味着设备未在网络中。
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.CModbusFuncCode">
+            <summary>
+            Modbus通讯功能码
+            授权声明：本软件作者将代码开源，仅用于交流学习。如果有商用需求，请联系软件作者协商相关事宜；否则，软件作者保留相关法律赋予的权利。
+            免责声明：使用本软件的相关人员必须仔细检查代码并负全部责任，软件作者不承担任何可能的损失(包含可抗力和不可抗力因素)。
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfDataLengthInSocketReceivedBytes">
+            <summary>
+            【Socket套接字通讯模式(TCP/UDP)】接收到的字节数组中，数据长度的索引号[4]~[5]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfSlaveAddressInSocketReceivedBytes">
+            <summary>
+            【Socket套接字通讯模式(TCP/UDP)】接收到的字节数组中，从站地址的索引号[6]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfFuncCodeInSocketReceivedBytes">
+            <summary>
+            【Socket套接字通讯模式(TCP/UDP)】接收到的字节数组中，功能码的索引号[7]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfErrorCodeInSocketReceivedBytes">
+            <summary>
+            【Socket套接字通讯模式(TCP/UDP)】接收到的字节数组中，错误码的索引号[8]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfDataInSocketReceivedBytes">
+            <summary>
+            【Socket套接字通讯模式(TCP/UDP)】执行读取操作时，接收到的字节数组中，接收到的数据开始的索引号[9]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfSlaveAddressInRTUReceivedBytes">
+            <summary>
+            接收到的字节数组中，从站地址的索引号[0]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfFuncCodeInRTUReceivedBytes">
+            <summary>
+            接收到的字节数组中，功能码的索引号[1]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfDataLengthInRTUReceivedBytes">
+            <summary>
+            接收到的字节数组中，数据字节长度(命令执行成功)的索引号[2]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfErrorCodeInRTUReceivedBytes">
+            <summary>
+            接收到的字节数组中，错误码(命令执行失败)的索引号[2]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosIndexOfDataInRTUReceivedBytes">
+            <summary>
+            接收到的字节数组中，接收到的有效数据开始的索引号[3]
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosOfSlaveAddressInAsciiReceivedString">
+            <summary>
+            Ascii-通讯方式，从站地址：第2~3字符(如果用字节处理，相应值/2)，收到从站返回的字符串中，从站地址码的位置[2] -- 第2个字符，用于Strings.Mid() 函数
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosOfFuncCodeInAsciiReceivedString">
+            <summary>
+            接Ascii-通讯方式，功能码：第4~5字符(如果用字节处理，相应值/2)，收到从站返回的字符串中，功能码的位置[4] -- 第4个字符，用于Strings.Mid() 函数
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosOfErrorCodeInAsciiReceivedString">
+            <summary>
+            接Ascii-通讯方式，错误码：第6~7字符(如果用字节处理，相应值/2)，收到从站返回的字符串中，错误码的位置[6] -- 第6个字符，用于Strings.Mid() 函数
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.PosOfDataLengthInAsciiReceivedString">
+            <summary>
+            接Ascii-通讯方式，数据字节长度：第6~7字符(如果用字节处理，相应值/2)，收到从站返回的字符串中，数据字节长度的位置[6] -- 第6个字符，用于Strings.Mid() 函数
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.StartPosOfDataInAsciiReceivedString">
+            <summary>
+            接Ascii-通讯方式，有效数据起始位置：第8字符(如果用字节处理，相应值/2)，收到从站返回的字符串中，有效数据的起始位置，默认值8
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.ReadCoil">
+            <summary>
+            【读】读取线圈 - 0x01
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.ReadInputSignal">
+            <summary>
+            【读】读取离散量(获取一组开关输入的当前状态) - 0x02
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.ReadRegister">
+            <summary>
+            【读】读取一个或多个寄存器，取得当前的二进制值 - 0x03
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.ReadInputRegister">
+            <summary>
+            【读】读取一个或多个输入寄存器，取得当前的二进制值 - 0x04
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.ReadErrorStatus">
+            <summary>
+            【读】读取异常状态，取得 8 个内部线圈的通断状态，这 8 个线圈的地址由控制器决定 - 0x07
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.SendBackCheckToSlave">
+            <summary>
+            【读】回送诊断校验：把诊断校验报文送从机，以对通信处理进行评鉴 - 0x08
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.MasterAskSlaveToReportSlaveID">
+            <summary>
+            【读】报告从机标识：可使主机判断编址从机的类型及该从机运行指示灯的状态 - 0x11
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.WriteCoil">
+            <summary>
+            【写】写单个线圈，强置一个逻辑线圈的通断状态 - 0x05
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.WriteRegister">
+            <summary>
+            【写】写单个寄存器，把具体二进制值写入一个保存寄存器 - 0x06
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.WriteMultiCoil">
+            <summary>
+            【写】写多个线圈：强置一串连续逻辑线圈的通断 - 0x0F
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.WriteMultiRegister">
+            <summary>
+            【写】写多个寄存器：把具体的二进制值装入一串连续的保持寄存器 - 0x10
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CModbusFuncCode.ResetCommLinkRoute">
+            <summary>
+            【写】重置通信链路：发生非可修改错误后，使从机复位于已知状态，可重置顺序字节 - 0x13
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CModbusFuncCode.Chinese">
+            <summary>
+            设置信息为中文
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CModbusFuncCode.English">
+            <summary>
+            设置信息为英文
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.CModbusFuncCode.FuncInfo(Converter.Modbus.ModbusFuncCode)">
+            <summary>
+            功能码描述信息
+            </summary>
+            <param name="FuncCode"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Converter.Modbus.CModbusFuncCode.info">
+            <summary>
+            信息接口
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.ModbusFuncCode">
+            <summary>
+            Modbus通讯功能码枚举定义
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.ReadCoil">
+            <summary>
+            【读】读取线圈 - 0x01
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.ReadInputSignal">
+            <summary>
+            【读】读取离散量(获取一组开关输入的当前状态) - 0x02
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.ReadRegister">
+            <summary>
+            【读】读取一个或多个保持寄存器，取得当前的二进制值 - 0x03
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.ReadInputRegister">
+            <summary>
+            【读】读取一个或多个输入寄存器，取得当前的二进制值 - 0x04
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.ReadErrorStatus">
+            <summary>
+            【读】读取异常状态，取得 8 个内部线圈的通断状态，这 8 个线圈的地址由控制器决定 - 0x07
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.SendBackCheckToSlave">
+            <summary>
+            【读】回送诊断校验：把诊断校验报文送从机，以对通信处理进行评鉴 - 0x08
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.MasterAskSlaveToReportSlaveID">
+            <summary>
+            【读】报告从机标识：可使主机判断编址从机的类型及该从机运行指示灯的状态 - 0x11
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.WriteCoil">
+            <summary>
+            【写】写单个线圈，强置一个逻辑线圈的通断状态 - 0x05
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.WriteRegister">
+            <summary>
+            【写】写单个保持寄存器，把具体二进制值写入一个保存寄存器 - 0x06
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.WriteMultiCoil">
+            <summary>
+            【写】写多个线圈：强置一串连续逻辑线圈的通断 - 0x0F
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.WriteMultiRegister">
+            <summary>
+            【写】写多个保持寄存器：把具体的二进制值装入一串连续的保持寄存器 - 0x10
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusFuncCode.ResetCommLinkRoute">
+            <summary>
+            【写】重置通信链路：发生非可修改错误后，使从机复位于已知状态，可重置顺序字节 - 0x13
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.CReadbackData">
+            <summary>
+            Modbus通讯返回数据的结果解析类：原始字符串、原始字节数组、从站地址、功能码、数据字符串、日期和时间、是否CRC校验OK、是否LRC校验OK
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.ReceivedString">
+            <summary>
+            接收到的原始字符串
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.ReceivedBytes">
+            <summary>
+            接收到的原始字节数组
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.SlaveAddress">
+            <summary>
+            从站地址
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.FuncCode">
+            <summary>
+            功能码
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.FuncDescription">
+            <summary>
+            功能码描述信息
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.ErrorCode">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.ErrorMsg">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.DataString">
+            <summary>
+            接收到的字符串中，读取返回的数据，或者是写命令返回的有效数据，用来解析读取数据或解析写命令是否执行成功
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.DataBytes">
+            <summary>
+            接收到的中字节数组，读取返回的数据，或者是写命令返回的有效数据，用来解析读取数据或解析写命令是否执行成功
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.ReceivedDateTime">
+            <summary>
+            接收数据的日期和时间
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.IsCRCOK">
+            <summary>
+            是否CRC校验OK
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.CReadbackData.IsLRCOK">
+            <summary>
+            是否LRC校验OK
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.English">
+            <summary>
+            Modbus通讯相关信息的英文版
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ReadCoil">
+            <summary>
+            【读】读取线圈 - 0x01
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ReadInputSignal">
+            <summary>
+            【读】读取离散量(获取一组开关输入的当前状态) - 0x02
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ReadRegister">
+            <summary>
+            【读】读取一个或多个保持寄存器，取得当前的二进制值 - 0x03
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ReadInputRegister">
+            <summary>
+            【读】读取一个或多个输入寄存器，取得当前的二进制值 - 0x04
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ReadErrorStatus">
+            <summary>
+            【读】读取异常状态，取得 8 个内部线圈的通断状态，这 8 个线圈的地址由控制器决定 - 0x07
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.SendBackCheckToSlave">
+            <summary>
+            【读】回送诊断校验：把诊断校验报文送从机，以对通信处理进行评鉴 - 0x08
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.MasterAskSlaveToReportSlaveID">
+            <summary>
+            【读】报告从机标识：可使主机判断编址从机的类型及该从机运行指示灯的状态 - 0x11
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.WriteCoil">
+            <summary>
+            【写】写单个线圈，强置一个逻辑线圈的通断状态 - 0x05
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.WriteRegister">
+            <summary>
+            【写】写单个保持寄存器，把具体二进制值写入一个保存寄存器 - 0x06
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.WriteMultiCoil">
+            <summary>
+            【写】写多个线圈：强置一串连续逻辑线圈的通断 - 0x0F
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.WriteMultiRegister">
+            <summary>
+            【写】写多个保持寄存器：把具体的二进制值装入一串连续的保持寄存器 - 0x10
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ResetCommLinkRoute">
+            <summary>
+            【写】重置通信链路：发生非可修改错误后，使从机复位于已知状态，可重置顺序字节 - 0x13
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.None">
+            <summary>
+            无错误
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.IllegalFunction">
+            <summary>
+            非法功能码 - 0x01：对于服务器或从站来说，询问中接收到的功能码是不可允许的操作。这也许是因为功能码仅仅适用于新设备而在被选单元中是不可实现的。同时，还指出服务器或从站在错误状态中处理这种请求，例如：因为它是未配置的，并且要求返回寄存器值。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.AddressOverrange">
+            <summary>
+            非法数据地址 - 0x02：对应服务器或从站来说，询问中接收到的数据地址是不可允许的地址。特别是，参考号和传输长度的组合是无效的。对于带有100个寄存器的控制器来说，带有偏移量 96 和长度 4 的请求会成功，带有偏移量 96 和长度 5 的请求将产生异常码 02.
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ReadLengthOverrange">
+            <summary>
+            读取长度超过最大值，非法数据值 - 0x03：对于服务器或从站来说，询问中包括的值是不可允许的值。这个值指示了组合请求剩余结构中的故障，例如：隐含长度是不正确的。并不意味着，因为 MODBUS 协议不知道任何特殊寄存器的任何特殊值的重要意义，寄存器中被提交存储的数据项有一个应用程序期望之外的值。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.ReadWriteException">
+            <summary>
+            读写异常，从站设备故障 - 0x04：当服务器或从站正在设法执行请求的操作时，产生不可重新获得的差错。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.Acknowledgement">
+            <summary>
+            确认 - 0x05：与编程命令一起使用。服务器或从站已经接受请求，并且正在处理这个请求，但是需要长的持续时间进行这些操作。返回这个响应防止在客户机或主站中发生超时错误。客户机或主站可以继续发送轮询程序完成报文来确定是否完成处理。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.SlaveIsBusy">
+            <summary>
+            从属设备忙 - 0x06：与编程命令一起使用。服务器或从站正在处理长持续时间的程序命令。当服务器或从站空闲时，用户或主机应该稍后重新传输报文
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.StoraryParityError">
+            <summary>
+            存储奇偶性差错 - 0x08：与功能码 20 和 21 以及参考类型 6 一起使用，指示扩展文件区不能通过一致性校验。服务器或从站设法读取文件记录，但是在存储器红发现一个奇偶校验错误。客户机或者主站可以重新发送请求，但可以在服务器或从站设备上要求服务。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.NotAvailableGatewayPath">
+            <summary>
+            不可用网关路径 - 0x0A：与网关一起使用，指示网关不能为处理请求分配输入端口至输出端口的内部通信路径。通常意味着网关是错误配置的或过载的。
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.English.NotResponseFromGatewayStation">
+            <summary>
+            网关目标设备响应失败 - 0x0B：与网关一起使用，指示没有从目标设备中获得响应。通常意味着设备未在网络中。
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.IModbusComm">
+            <summary>
+            Modbus通讯接口
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.GetInfo">
+            <summary>
+            获取通讯的记录信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.AnalysisErrorCode(System.Byte[])">
+            <summary>
+            TBD -- 解析返回信息的错误代码
+            </summary>
+            <param name="MsgWithErrorCode">从站返回的完整字节数组(含错误信息)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilBit(System.Byte,System.UInt16,System.Boolean@)">
+            <summary>
+            读取从站单个线圈状态(位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilBit(System.Byte,System.UInt16,System.UInt16,System.Boolean[]@)">
+            <summary>
+            读取从站多个字节的线圈状态(1个字节 = 8位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilByte(System.Byte,System.UInt16,System.Byte@)">
+            <summary>
+            读取从站1个字节的线圈状态(1个字节 = 8位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的1个字节当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilByte(System.Byte,System.UInt16,System.UInt16,System.Byte[]@)">
+            <summary>
+            读取从站多个字节的线圈状态(1个字节 = 8位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回线圈的字节当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilByte(System.Byte,System.UInt16,System.SByte@)">
+            <summary>
+            读取从站1个字节的线圈状态(1个字节 = 8位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的1个字节当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilByte(System.Byte,System.UInt16,System.UInt16,System.SByte[]@)">
+            <summary>
+            读取从站多个字节的线圈状态(1个字节 = 8位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回线圈的字节当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.Int16@)">
+            <summary>
+            读取从站1个字的线圈状态(位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的1个字当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt16,System.Int16[]@)">
+            <summary>
+            读取从站多个字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字</param>
+            <param name="Value">返回线圈多个字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt16@)">
+            <summary>
+            读取从站1个字的线圈状态(位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的1个字当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt16,System.UInt16[]@)">
+            <summary>
+            读取从站多个字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字</param>
+            <param name="Value">返回线圈多个字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.Int32@)">
+            <summary>
+            读取从站2个字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的2个字当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt16,System.Int32[]@)">
+            <summary>
+            读取从站多个双字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回线圈多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt32@)">
+            <summary>
+            读取从站2个字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的2个字当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt16,System.UInt32[]@)">
+            <summary>
+            读取从站多个双字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回线圈多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.Int64@)">
+            <summary>
+            读取从站2个双字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的2个双字当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt16,System.Int64[]@)">
+            <summary>
+            读取从站多个双字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回线圈多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt64@)">
+            <summary>
+            读取从站2个双字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回线圈的2个双字当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadCoilWord(System.Byte,System.UInt16,System.UInt16,System.UInt64[]@)">
+            <summary>
+            读取从站多个双字的线圈状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回线圈多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputBit(System.Byte,System.UInt16,System.Boolean@)">
+            <summary>
+            读取从站单个输入位的状态(位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回单个输入位的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputBit(System.Byte,System.UInt16,System.UInt16,System.Boolean[]@)">
+            <summary>
+            读取从站多个字节的输入状态(1个字节 = 8位 - bit)，函数是以字节为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回多个字节输入状态的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputByte(System.Byte,System.UInt16,System.Byte@)">
+            <summary>
+            读取从站1个字节的输入状态(位 - bit)，函数是以字节为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入状态1个字节的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputByte(System.Byte,System.UInt16,System.UInt16,System.Byte[]@)">
+            <summary>
+            读取从站多个字节的输入状态(位 - bit)，函数是以字节为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回输入状态多个字节的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputByte(System.Byte,System.UInt16,System.SByte@)">
+            <summary>
+            读取从站1个字节的输入状态(位 - bit)，函数是以字节为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入状态1个字节的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputByte(System.Byte,System.UInt16,System.UInt16,System.SByte[]@)">
+            <summary>
+            读取从站多个字节的输入状态(位 - bit)，函数是以字节为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回输入状态多个字节的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.Int16@)">
+            <summary>
+            读取从站1个字的输入状态，函数是以字为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入状态1个字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt16,System.Int16[]@)">
+            <summary>
+            读取从站多个字的输入状态，函数是以字节为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字</param>
+            <param name="Value">返回输入状态多个字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt16@)">
+            <summary>
+            读取从站1个字的输入状态，函数是以字为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入状态1个字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt16,System.UInt16[]@)">
+            <summary>
+            读取从站多个字的输入状态，函数是以字节为读取数据长度单位，返回的值是以字为单位(2个字节的倍数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字</param>
+            <param name="Value">返回输入状态多个字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.Int32@)">
+            <summary>
+            读取从站1个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入状态1个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt16,System.Int32[]@)">
+            <summary>
+            读取从站多个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回输入状态多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt32@)">
+            <summary>
+            读取从站1个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入状态1个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt16,System.UInt32[]@)">
+            <summary>
+            读取从站多个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回输入状态多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.Int64@)">
+            <summary>
+            读取从站2个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回2个双字输入状态的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt16,System.Int64[]@)">
+            <summary>
+            读取从站多个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回输入状态多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt64@)">
+            <summary>
+            读取从站2个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回2个双字输入状态的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputWord(System.Byte,System.UInt16,System.UInt16,System.UInt64[]@)">
+            <summary>
+            读取从站多个双字的输入状态
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回输入状态多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.Int16@)">
+            <summary>
+            读取从站输入寄存器的当前值(short: -32,768 到 32,767)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.Int16[]@)">
+            <summary>
+            读取从站输入寄存器的当前值(short: -32,768 到 32,767)，函数是以字节为读取数据长度单位
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度</param>
+            <param name="Value">返回输入寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16@)">
+            <summary>
+            读取从站输入寄存器的当前值(short: -32,768 到 32,767)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.UInt16[]@)">
+            <summary>
+            读取从站输入寄存器的当前值(short: -32,768 到 32,767)，函数是以字节为读取数据长度单位
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度</param>
+            <param name="Value">返回输入寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.Int32@)">
+            <summary>
+            读取从站输入寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.Int32[]@)">
+            <summary>
+            读取从站输入寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度</param>
+            <param name="Value">返回输入寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt32@)">
+            <summary>
+            读取从站输入寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.UInt32[]@)">
+            <summary>
+            读取从站输入寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度</param>
+            <param name="Value">返回输入寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.Single@)">
+            <summary>
+            读取从站输入寄存器的当前值(float)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入寄存器的当前值(float)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.Single[]@)">
+            <summary>
+            读取从站输入寄存器的当前值(float)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度</param>
+            <param name="Value">返回输入寄存器的当前值(float)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.Double@)">
+            <summary>
+            【?? 测试读取数据时不能像其它功能码一样正确读取double值，在float范围内可以正确读取，其它会对应不上，待更多测试】
+            读取从站输入寄存器的当前值(double)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回输入寄存器的当前值(double)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.Double[]@)">
+            <summary>
+            【?? 测试读取数据时不能像其它功能码一样正确读取double值，在float范围内可以正确读取，其它会对应不上，待更多测试】
+            读取从站输入寄存器的当前值(double)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度</param>
+            <param name="Value">返回输入寄存器的当前值(double)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.Int64@)">
+            <summary>
+            【测试读取数据时不能像其它功能码一样正确读取long值，在int范围内可以正确读取，其它会对应不上，待更多测试】
+            读取从站2个双字的输入寄存器的当前值
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回2个双字输入寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.Int64[]@)">
+            <summary>
+            【测试读取数据时不能像其它功能码一样正确读取long值，在int范围内可以正确读取，其它会对应不上，待更多测试】
+            读取从站多个双字的输入寄存器的当前值
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回输入寄存器多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt64@)">
+            <summary>
+            【测试读取数据时不能像其它功能码一样正确读取long值，在int范围内可以正确读取，其它会对应不上，待更多测试】
+            读取从站2个双字的输入寄存器的当前值
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回2个双字输入寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadInputRegister(System.Byte,System.UInt16,System.UInt16,System.UInt64[]@)">
+            <summary>
+            【测试读取数据时不能像其它功能码一样正确读取long值，在int范围内可以正确读取，其它会对应不上，待更多测试】
+            读取从站多个双字的输入寄存器的当前值
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：双字</param>
+            <param name="Value">返回输入寄存器多个双字的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.Int16@)">
+            <summary>
+            读取从站保持寄存器的当前值(short: -32,768 到 32,767)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回保持寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.Int16[]@)">
+            <summary>
+            读取从站保持寄存器的当前值(short: -32,768 到 32,767)，函数是以字节为读取数据长度单位
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回保持寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16@)">
+            <summary>
+            读取从站保持寄存器的当前值(short: -32,768 到 32,767)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回保持寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.UInt16[]@)">
+            <summary>
+            读取从站保持寄存器的当前值(short: -32,768 到 32,767)，函数是以字节为读取数据长度单位
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回保持寄存器的当前值(short: -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.Int32@)">
+            <summary>
+            读取从站保持寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回保持寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.Int32[]@)">
+            <summary>
+            读取从站保持寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回保持寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt32@)">
+            <summary>
+            读取从站保持寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回保持寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.UInt32[]@)">
+            <summary>
+            读取从站保持寄存器的当前值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：字节</param>
+            <param name="Value">返回保持寄存器的当前值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.Single@)">
+            <summary>
+            读取从站float保持寄存器的当前值(32位浮点值)(float  -3.4×10的38次方 到 +3.4×10的38次方, 精度：7 位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回float保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.Single[]@)">
+            <summary>
+            读取从站float保持寄存器的当前值(32位浮点值)(float  -3.4×10的38次方 到 +3.4×10的38次方, 精度：7 位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：float</param>
+            <param name="Value">返回float保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.Double@)">
+            <summary>
+            读取从站double(64位浮点值)值到从站保持寄存器(±5.0×10的−324次方 到 ±1.7×10的308次方   精度:15到16位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回double保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.Double[]@)">
+            <summary>
+            读取从站double(64位浮点值)值到从站保持寄存器(±5.0×10的−324次方 到 ±1.7×10的308次方   精度:15到16位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：double</param>
+            <param name="Value">返回double保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.Int64@)">
+            <summary>
+            读取从站long(64位整数值)值到从站保持寄存器(-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回long保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.Int64[]@)">
+            <summary>
+            读取从站long(64位整数值)值到从站保持寄存器(-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：double</param>
+            <param name="Value">返回long保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt64@)">
+            <summary>
+            读取从站long(64位整数值)值到从站保持寄存器(-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="Value">返回long保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.ReadKeepRegister(System.Byte,System.UInt16,System.UInt16,System.UInt64[]@)">
+            <summary>
+            读取从站long(64位整数值)值到从站保持寄存器(-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="ReadDataLength">读取数据长度，单位：double</param>
+            <param name="Value">返回long保持寄存器的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilBit(System.Byte,System.UInt16,System.Boolean)">
+            <summary>
+            写从站线圈(位 - bit)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="IsOn">设置线圈的当前值：true - On; false - Off</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilBit(System.Byte,System.UInt16,System.Boolean[])">
+            <summary>
+            写从站线圈字节(位 - bit；1字节 = 8bit)，写线圈的布尔数组长度必须是8的整数倍
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置8*N个线圈的当前值数组：true - On; false - Off</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilByte(System.Byte,System.UInt16,System.Byte)">
+            <summary>
+            写从站1个字节的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置1个字节线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilByte(System.Byte,System.UInt16,System.Byte[])">
+            <summary>
+            写从站N个字节的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个字节线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilByte(System.Byte,System.UInt16,System.SByte)">
+            <summary>
+            写从站1个字节的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置1个字节线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilByte(System.Byte,System.UInt16,System.SByte[])">
+            <summary>
+            写从站N个字节的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个字节线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.Int16)">
+            <summary>
+            写从站1个字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置1个字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.Int16[])">
+            <summary>
+            写从站N个字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.UInt16)">
+            <summary>
+            写从站1个字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置1个字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.UInt16[])">
+            <summary>
+            写从站N个字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.Int32)">
+            <summary>
+            写从站1个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置1个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.Int32[])">
+            <summary>
+            写从站N个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.UInt32)">
+            <summary>
+            写从站1个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置1个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.UInt32[])">
+            <summary>
+            写从站N个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.Int64)">
+            <summary>
+            写从站2个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置2个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.Int64[])">
+            <summary>
+            写从站N个2个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个2个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.UInt64)">
+            <summary>
+            写从站2个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置2个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteCoilWord(System.Byte,System.UInt16,System.UInt64[])">
+            <summary>
+            写从站N个2个双字的线圈
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="SetValue">设置N个2个双字线圈的当前值</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Int16)">
+            <summary>
+            写从站单个保持寄存器的值(short:  -32,768 到 32,767)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置单个保持寄存器的值(short:  -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Int16[])">
+            <summary>
+            写从站多个保持寄存器的值(short:  -32,768 到 32,767)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置多个保持寄存器的值(short:  -32,768 到 32,767)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.UInt16)">
+            <summary>
+            写从站单个保持寄存器的值(short: 0 到 65535)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置单个保持寄存器的值(short: 0 到 65535)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.UInt16[])">
+            <summary>
+            写从站多个保持寄存器的值(short: 0 到 65535)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置多个保持寄存器的值(short: 0 到 65535)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Int32)">
+            <summary>
+            写从站多个保持寄存器的值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Int32[])">
+            <summary>
+            写从站多个保持寄存器的值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.UInt32)">
+            <summary>
+            写从站多个保持寄存器的值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.UInt32[])">
+            <summary>
+            写从站多个保持寄存器的值(int)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(int)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Single)">
+            <summary>
+            写float(32位浮点值)值到从站保持寄存器(float  -3.4×10的38次方 到 +3.4×10的38次方, 精度：7 位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(float)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Single[])">
+            <summary>
+            写float(32位浮点值)值到从站保持寄存器(float  -3.4×10的38次方 到 +3.4×10的38次方, 精度：7 位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(float)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Double)">
+            <summary>
+            写double(64位浮点值)值到从站保持寄存器(±5.0×10的−324次方 到 ±1.7×10的308次方   精度:15到16位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(double)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Double[])">
+            <summary>
+            写double(64位浮点值)值到从站保持寄存器(±5.0×10的−324次方 到 ±1.7×10的308次方   精度:15到16位)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(double)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Int64)">
+            <summary>
+            写long(64位整数值)值到从站保持寄存器(9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(long)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.Int64[])">
+            <summary>
+            写long(64位整数值)值到从站保持寄存器(9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(long)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.UInt64)">
+            <summary>
+            写long(64位整数值)值到从站保持寄存器(9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(long)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="M:Converter.Modbus.IModbusComm.WriteKeepRegister(System.Byte,System.UInt16,System.UInt64[])">
+            <summary>
+            写long(64位整数值)值到从站保持寄存器(9,223,372,036,854,775,808 到 9,223,372,036,854,775,807, 有符号 64 位整数)
+            </summary>
+            <param name="DeviceAddress">从站设备地址</param>
+            <param name="BeginAddress">读取起始地址</param>
+            <param name="SetValue">设置保持寄存器的值(long)</param>
+            <returns>是否成功执行命令</returns>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.IsConnected">
+            <summary>
+            是否已经建立连接
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.ParaBytesFormat">
+            <summary>
+            命令参数：多字节数据的格式
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.WriteCoilBytesFormat">
+            <summary>
+            写线圈数据：多字节数据的格式
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.WriteKeepRegisterBytesFormat">
+            <summary>
+            写保持寄存器数据：多字节数据的格式
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.ReadInputRegisterBytesFormat">
+            <summary>
+            读输入寄存器数据：多字节数据的格式
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.ReadKeepRegisterBytesFormat">
+            <summary>
+            读保持寄存器数据：多字节数据的格式
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.ReadCoilBytesFormat">
+            <summary>
+            读线圈数据：多字节数据的格式，默认值：BytesFormat.ABCD
+            </summary>
+        </member>
+        <member name="P:Converter.Modbus.IModbusComm.ReadInputIOBytesFormat">
+            <summary>
+            读输入离散信号数据：多字节数据的格式，默认值：BytesFormat.ABCD
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.ModbusAscii">
+            <summary>
+            授权声明：本软件作者将代码开源，仅用于交流学习。如果有商用需求，请联系软件作者协商相关事宜；否则，软件作者保留相关法律赋予的权利。
+            免责声明：使用本软件的相关人员必须仔细检查代码并负全部责任，软件作者不承担任何可能的损失(包含可抗力和不可抗力因素)。
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.ModbusAscii.PackMultiWriteCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.Int32,System.Int32,System.String,Converter.BytesFormat)">
+            <summary>
+            封装写多个线圈/保持寄存器命令，返回处理好的字节数组
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="DataLength">要发送的数据的数量：线圈 -- 位(bool)；寄存器 -- 字(short)</param>
+            <param name="BytesCount">要发送数据的字节数</param>
+            <param name="Data">要发送的数据的字节数组</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusAscii.PackSingleWriteCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.String,Converter.BytesFormat)">
+            <summary>
+            封装写单个线圈/保持寄存器命令，返回处理好的字节数组
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="Data">要发送的数据的字节数组</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusAscii.PackReadCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.UInt16)">
+            <summary>
+            创建读取命令的字节数组，可以直接发送这个字节数组到串口端口
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="ReadFunctionCode">读取功能码</param>
+            <param name="BeginReadAddress">读取的起始地址</param>
+            <param name="ReadDataLength">读取数据长度，有效值范围：1~2000(位)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusAscii.CalcResultsIncludeLRC(System.String)">
+            <summary>
+            将命令字符串转化为字节，然后计算LRC，并返回计算后的总字节数组
+            </summary>
+            <param name="CmdData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusAscii.CalcLRCBytes(System.String)">
+            <summary>
+            计算LRC值，返回长度为2的字节数组 -- 格式：地址(2个字符) + 功能码(2个字符) + 起始地址(4个字符) + 数据长度(4个字符)
+            </summary>
+            <param name="ModbusAsciiCommand">16进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:Converter.Modbus.ModbusCommType">
+            <summary>
+            Modbus通讯种类枚举
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusCommType.Ascii">
+            <summary>
+            Modbus通讯：Ascii = 0
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusCommType.RTU">
+            <summary>
+            Modbus通讯：RTU = 1
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusCommType.TCP">
+            <summary>
+            Modbus通讯：TCP = 2
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusCommType.UDP">
+            <summary>
+            Modbus通讯：UDP = 3
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.ModbusCommType.Socket">
+            <summary>
+            Modbus通讯：Socket = 4
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.SocketDefinition">
+            <summary>
+            Socket通讯类型枚举
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.SocketDefinition.TCP">
+            <summary>
+            Socket通讯类型：TCP - 0
+            </summary>
+        </member>
+        <member name="F:Converter.Modbus.SocketDefinition.UDP">
+            <summary>
+            Socket通讯类型：UDP = 1
+            </summary>
+        </member>
+        <member name="T:Converter.Modbus.ModbusRTU">
+            <summary>
+            授权声明：本软件作者将代码开源，仅用于交流学习。如果有商用需求，请联系软件作者协商相关事宜；否则，软件作者保留相关法律赋予的权利。
+            免责声明：使用本软件的相关人员必须仔细检查代码并负全部责任，软件作者不承担任何可能的损失(包含可抗力和不可抗力因素)。
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.ModbusRTU.PackReadCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.Int32,Converter.BytesFormat,Converter.BytesFormat)">
+            <summary>
+            封装读取命令，返回处理好的字节数组，然后可以直接将字节数组发送到串口
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="ReadDataLength">读取数据长度</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <param name="WriteCoilBytesFormat">写数据时的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusRTU.PackSingleWriteCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.Byte[],Converter.BytesFormat,Converter.BytesFormat)">
+            <summary>
+            封装写命令，返回处理好的字节数组
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="Data">要发送的数据的字节数组</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <param name="WriteCoilBytesFormat">写数据时的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusRTU.PackMultiWriteCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.Int32,System.Byte[],Converter.BytesFormat,Converter.BytesFormat)">
+            <summary>
+            封装写命令，返回处理好的字节数组
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="DataLength">要发送的数据的数量：线圈 -- 位(bool)；寄存器 -- 字(short)</param>
+            <param name="Data">要发送的数据的字节数组</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <param name="WriteCoilBytesFormat">写数据时的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="T:Converter.Modbus.ModbusSocket">
+            <summary>
+            授权声明：本软件作者将代码开源，仅用于交流学习。如果有商用需求，请联系软件作者协商相关事宜；否则，软件作者保留相关法律赋予的权利。
+            免责声明：使用本软件的相关人员必须仔细检查代码并负全部责任，软件作者不承担任何可能的损失(包含可抗力和不可抗力因素)。
+            </summary>
+        </member>
+        <member name="M:Converter.Modbus.ModbusSocket.PackMultiWriteCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.Int32,System.Byte[],System.Int16,System.Byte[],Converter.BytesFormat)">
+            <summary>
+            创建写保持寄存器命令的字节数组，可以直接发送这个字节数组到Socket端口
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="Data">发送的数据(字节)</param>
+            <param name="DataLength">要发送的数据的数量：线圈 -- 位(bool)；寄存器 -- 字(short)</param>
+            <param name="MsgID">消息ID</param>
+            <param name="ProtocolIDCodeBytes">协议标识</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusSocket.PackSingleWriteCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.Byte[],System.Int16,System.Byte[],Converter.BytesFormat)">
+            <summary>
+            创建写保持寄存器命令的字节数组，可以直接发送这个字节数组到Socket端口
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="Data">发送的数据(字节)</param>
+            <param name="MsgID">消息ID</param>
+            <param name="ProtocolIDCodeBytes">协议标识</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Modbus.ModbusSocket.PackReadCmd(System.Byte,Converter.Modbus.ModbusFuncCode,System.UInt16,System.Int32,System.Int16,System.Byte[],Converter.BytesFormat)">
+            <summary>
+            创建读取命令的字节数组，可以直接发送这个字节数组到Socket端口
+            </summary>
+            <param name="DeviceAddress">从站地址</param>
+            <param name="FuncCode">功能码</param>
+            <param name="BeginAddress">起始地址</param>
+            <param name="ReadDataLength">读取数据长度，有效值范围：1~2000(位)</param>
+            <param name="MsgID">消息ID</param>
+            <param name="ProtocolIDCodeBytes">协议标识</param>
+            <param name="ParaBytesFormat">参数的字节编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="T:Converter.Strings">
+            <summary>
+            字符串处理
+            </summary>
+        </member>
+        <member name="M:Converter.Strings.Mid(System.String,System.Int32)">
+            <summary>
+            截取源字符串中从指定位置开始到结尾的字符，并返回这个字符串
+            </summary>
+            <param name="SourceString">源字符串</param>
+            <param name="Start">截取字符的起始位置，从1开始(1对应源字符串中的第一个字符)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Strings.Mid(System.String,System.Int32,System.Int32)">
+            <summary>
+            截取源字符串中指定位置和数量的字符，并返回这个字符串
+            </summary>
+            <param name="SourceString">源字符串</param>
+            <param name="Start">截取字符的起始位置，从1开始(1对应源字符串中的第一个字符)</param>
+            <param name="Length">要返回的字符的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Strings.Left(System.String,System.Int32)">
+            <summary>
+            从目标字符串中，从左边开始截取指定长度的字符串并返回该值
+            </summary>
+            <param name="SourceString">目标字符串</param>
+            <param name="Length">从左边开始截取字符串的指定长度</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:Converter.Strings.Split(System.String,System.String)">
+            <summary>
+            将目标字符串依照分隔符分割成字符串数组并返回该值
+            </summary>
+            <param name="SourceString">目标字符串</param>
+            <param name="Delimiter">分隔符</param>
+            <returns>字符串</returns>
+        </member>
+    </members>
+</doc>

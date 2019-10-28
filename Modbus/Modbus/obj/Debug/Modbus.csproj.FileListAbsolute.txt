@@ -1,0 +1,10 @@
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\bin\Debug\Modbus.XML
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\bin\Debug\Modbus.dll
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\bin\Debug\Modbus.pdb
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\bin\Debug\Converter.dll
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\bin\Debug\ThreadLock.dll
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\bin\Debug\Converter.xml
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\bin\Debug\ThreadLock.xml
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\obj\Debug\Modbus.dll
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\obj\Debug\Modbus.pdb
+F:\AllGitHubs\Modbus-Ascii\Modbus\Modbus\obj\Debug\Modbus.csprojResolveAssemblyReference.cache

@@ -1,0 +1,6 @@
+F:\Project Data\VS2012 Projects\ModbusAscii\ModbusAscii\bin\Debug\ModbusAscii.dll
+F:\Project Data\VS2012 Projects\ModbusAscii\ModbusAscii\bin\Debug\ModbusAscii.pdb
+F:\Project Data\VS2012 Projects\ModbusAscii\ModbusAscii\bin\Debug\ThreadLock.dll
+F:\Project Data\VS2012 Projects\ModbusAscii\ModbusAscii\bin\Debug\ThreadLock.pdb
+F:\Project Data\VS2012 Projects\ModbusAscii\ModbusAscii\obj\Debug\ModbusAscii.dll
+F:\Project Data\VS2012 Projects\ModbusAscii\ModbusAscii\obj\Debug\ModbusAscii.pdb
