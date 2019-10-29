@@ -1,5 +1,5 @@
-# Modbus-Ascii/RTU/TCP/UDP
-C# Modbus-Ascii/RTU/TCP/UDP Communication
+# Modbus-Ascii/RTU/TCP/UDP(Support .Net Framework/.Net Core)
+C# Modbus-Ascii/RTU/TCP/UDP Communication(Support .Net Framework/.Net Core)
 
 【特别声明：此代码为彭东南个人原创，Modbus-Ascii/RTU/TCP/UDP(支持跨线程读写操作)，封装的DLL允许单次使用10分钟。如需长期使用，请打赏或联系作者购买，邮箱地址：southeastofstar@163.com，微信号：southeastofstar】
 
