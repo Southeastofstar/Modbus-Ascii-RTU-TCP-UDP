@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ModbusComm\ModbusComm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Converter">
+      <HintPath>UsedDLL\Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="ThreadLock">
+      <HintPath>UsedDLL\ThreadLock.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

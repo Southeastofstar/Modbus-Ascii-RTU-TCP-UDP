@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThreadLock</name>
+    </assembly>
+    <members>
+        <member name="T:ThreadLock.CAdvancedHybirdLock">
+            <summary>
+            高级的混合线程同步锁(采用了基元用户加基元内核同步构造实现，并包含了自旋和线程所有权)
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.stUsedTime">
+            <summary>
+            等待计时，取代Sleep()
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.bAddSleepTime">
+            <summary>
+            在解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAdvancedHybirdLock.AddSleepTime">
+            <summary>
+            在解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.iLockCount">
+            <summary>
+            基元用户模式构造同步锁
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAdvancedHybirdLock.LockCount">
+            <summary>
+            锁定次数
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.Locker">
+            <summary>
+            基元内核模式构造同步锁
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.iSpinCount">
+            <summary>
+            【暂时没有使用到】控制自旋的一个字段
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.iOwningThreadId">
+            <summary>
+            指出哪个线程拥有锁
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.lRecursionCountOfLocker">
+            <summary>
+            指示锁拥有了多少次
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.dicThreadLockStatistic">
+            <summary>
+            相关线程锁占用次数统计
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.objLockForStatistic">
+            <summary>
+            相关线程ID及其锁占用次数统计计算时的锁定对象
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAdvancedHybirdLock.ThreadsAndLockStatistic">
+            <summary>
+            相关线程ID及其锁占用次数统计
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAdvancedHybirdLock.bIsDisposed">
+            <summary>
+            要检测冗余调用
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CAdvancedHybirdLock.Dispose(System.Boolean)">
+            <summary>
+            释放资源
+            </summary>
+            <param name="ExecuteDispose"></param>
+        </member>
+        <member name="M:ThreadLock.CAdvancedHybirdLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CAdvancedHybirdLock.Lock">
+            <summary>
+            锁定并阻止当前线程，直到当前锁对象执行 Unlock()
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CAdvancedHybirdLock.Unlock">
+            <summary>
+            释放锁，允许一个或多个等待线程继续执行
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAdvancedHybirdLock.IsLocked">
+            <summary>
+            获取当前锁是否在锁定状态(等待)当中
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CAutoResetEventLock">
+            <summary>
+            基元内核模式构造同步锁
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAutoResetEventLock.UseLimitedRightIsDue">
+            <summary>
+            使用权限到期
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAutoResetEventLock.stUsedTime">
+            <summary>
+            等待计时，取代Sleep()
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAutoResetEventLock.bAddSleepTime">
+            <summary>
+            在锁/解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAutoResetEventLock.AddSleepTime">
+            <summary>
+            在解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAutoResetEventLock.iLockCount">
+            <summary>
+            基元用户模式构造同步锁
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAutoResetEventLock.LockCount">
+            <summary>
+            锁定次数
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAutoResetEventLock.Locker">
+            <summary>
+            基元内核模式构造同步锁
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CAutoResetEventLock.iCurrentThreadID">
+            <summary>
+            当前线程ID
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAutoResetEventLock.CurrentThreadID">
+            <summary>
+            当前线程ID
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CAutoResetEventLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CAutoResetEventLock.Lock">
+            <summary>
+            锁定并阻止当前线程，直到当前锁对象执行 Unlock()
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CAutoResetEventLock.Unlock">
+            <summary>
+            释放锁，允许一个或多个等待线程继续执行
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CAutoResetEventLock.IsLocked">
+            <summary>
+            获取当前锁是否在锁定状态(等待)当中
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CCountdownEventLock">
+            <summary>
+            在计数变为零时处于有信号状态的同步基元构造同步锁
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CCountdownEventLock.stUsedTime">
+            <summary>
+            等待计时，取代Sleep()
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CCountdownEventLock.bAddSleepTime">
+            <summary>
+            在锁/解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CCountdownEventLock.AddSleepTime">
+            <summary>
+            在解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CCountdownEventLock.iLockCount">
+            <summary>
+            基元用户模式构造同步锁
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CCountdownEventLock.LockCount">
+            <summary>
+            锁定次数
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CCountdownEventLock.Locker">
+            <summary>
+            表示在计数变为零时处于有信号状态的同步基元
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CCountdownEventLock.iCurrentThreadID">
+            <summary>
+            当前线程ID
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CCountdownEventLock.CurrentThreadID">
+            <summary>
+            当前线程ID
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CCountdownEventLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CCountdownEventLock.Lock">
+            <summary>
+            锁定并阻止当前线程，直到当前锁对象执行 Unlock()
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CCountdownEventLock.Unlock">
+            <summary>
+            释放锁，允许一个或多个等待线程继续执行
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CCountdownEventLock.IsLocked">
+            <summary>
+            获取当前锁是否在锁定状态(等待)当中
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CExchangeLock">
+            <summary>
+            【性能最佳】原子锁，通过原子操作Interlocked.CompareExchange实现“无锁”竞争
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CExchangeLock.UseLimitedRightIsDue">
+            <summary>
+            使用权限到期
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CExchangeLock.iCompareValue">
+            <summary>
+            原子操作的比较值和原始值
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CExchangeLock.stUsedTime">
+            <summary>
+            等待计时，取代Sleep()
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CExchangeLock.bAddSleepTime">
+            <summary>
+            在锁/解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CExchangeLock.AddSleepTime">
+            <summary>
+            在解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CExchangeLock.iLockCount">
+            <summary>
+            基元用户模式构造同步锁
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CExchangeLock.LockCount">
+            <summary>
+            锁定次数
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CExchangeLock.iCurrentThreadID">
+            <summary>
+            当前线程ID
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CExchangeLock.CurrentThreadID">
+            <summary>
+            当前线程ID
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CExchangeLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CExchangeLock.Lock">
+            <summary>
+            锁定并阻止当前线程，直到当前锁对象执行 Unlock()
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CExchangeLock.Unlock">
+            <summary>
+            释放锁，允许一个或多个等待线程继续执行
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CExchangeLock.IsLocked">
+            <summary>
+            获取当前锁是否在锁定状态(等待)当中
+            </summary>
+        </member>
+        <member name="T:ThreadLock.Constants">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ThreadLock.Constants.iCountForUseLimit">
+            <summary>
+            使用次数计数
+            </summary>
+        </member>
+        <member name="F:ThreadLock.Constants.iUseLimit">
+            <summary>
+            使用次数限制
+            </summary>
+        </member>
+        <member name="F:ThreadLock.Constants.bSetLimitRightByTime">
+            <summary>
+            true - 使用时间来限制使用权限；false - 使用计数次数来限制使用权限
+            </summary>
+        </member>
+        <member name="F:ThreadLock.Constants.swUsedTime">
+            <summary>
+            使用时间计时
+            </summary>
+        </member>
+        <member name="F:ThreadLock.Constants.iUsedTimeLimit">
+            <summary>
+            允许临时使用10分钟，单位：s
+            </summary>
+        </member>
+        <member name="F:ThreadLock.Constants.bShowedDialogAboutLimitRightIsDue">
+            <summary>
+            显示一次提示对话框
+            </summary>
+        </member>
+        <member name="P:ThreadLock.Constants.UseLimitedRightIsDue">
+            <summary>
+            使用权限到期
+            </summary>
+        </member>
+        <member name="M:ThreadLock.Constants.AddCount">
+            <summary>
+            加计数，返回值：true - 使用权限到期；false - 使用权限未到期
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ThreadLock.COptimisticSyncCoordinator">
+            <summary>
+            一个用于高性能，乐观并发模型控制操作的类，允许一个方法(隔离方法)的安全单次执行
+            </summary>
+        </member>
+        <member name="M:ThreadLock.COptimisticSyncCoordinator.#ctor(System.Action)">
+            <summary>
+            实例化一个对象，需要传入隔离执行的方法
+            </summary>
+            <param name="operater">隔离执行的方法</param>
+        </member>
+        <member name="F:ThreadLock.COptimisticSyncCoordinator.OperaterStatus">
+            <summary>
+            操作状态，0是未操作，1是操作中
+            </summary>
+        </member>
+        <member name="F:ThreadLock.COptimisticSyncCoordinator.Target">
+            <summary>
+            需要操作的次数
+            </summary>
+        </member>
+        <member name="M:ThreadLock.COptimisticSyncCoordinator.StartOperatorInfomation">
+            <summary>
+            启动线程池执行隔离方法
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CReadWriteLock">
+            <summary>
+            一个高性能的读写锁，支持写锁定，读灵活，读时写锁定，写时读锁定
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CReadWriteLock.ToString">
+            <summary>
+            返回本对象的描述字符串
+            </summary>
+            <returns>对象的描述字符串</returns>
+        </member>
+        <member name="M:ThreadLock.CReadWriteLock.#ctor">
+            <summary>
+            实例化一个读写锁的对象
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CReadWriteLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CReadWriteLock.Enter(System.Boolean)">
+            <summary>
+            根据读写情况请求锁
+            </summary>
+            <param name="exclusive">True为写请求，False为读请求</param>
+        </member>
+        <member name="M:ThreadLock.CReadWriteLock.Leave">
+            <summary>
+            释放锁，将根据锁状态自动区分读写锁
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CSingleton">
+            <summary>
+            ******【仅仅是示例】*******
+            一个双检锁的示例，适合一些占内存的静态数据对象，获取的时候才实例化真正的对象
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CSoftMultiTask`1">
+            <summary>
+            一个用于多线程并发处理数据的模型类，适用于处理数据量非常庞大的情况
+            </summary>
+            <typeparam name="T">等待处理的数据类型</typeparam>
+        </member>
+        <member name="M:ThreadLock.CSoftMultiTask`1.#ctor(`0[],System.Func{`0,System.Boolean},System.Int32)">
+            <summary>
+            实例化一个数据处理对象
+            </summary>
+            <param name="dataList">数据处理列表</param>
+            <param name="operater">数据操作方法，应该是相对耗时的任务</param>
+            <param name="threadCount">需要使用的线程数</param>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_opCount">
+            <summary>
+            操作总数，判定操作是否完成
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_opThreadCount">
+            <summary>
+            判断是否所有的线程是否处理完成
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_threadCount">
+            <summary>
+            准备启动的处理数据的线程数量
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_runStatus">
+            <summary>
+            指示多线程处理是否在运行中，防止冗余调用
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_dataList">
+            <summary>
+            列表数据
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_operater">
+            <summary>
+            需要操作的方法
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CSoftMultiTask`1.MultiInfo">
+            <summary>
+            一个双参数委托
+            </summary>
+            <param name="item"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="T:ThreadLock.CSoftMultiTask`1.MultiInfoTwo">
+            <summary>
+            用于报告进度的委托，当finish等于count时，任务完成
+            </summary>
+            <param name="finish">已完成操作数量</param>
+            <param name="count">总数量</param>
+            <param name="success">成功数量</param>
+            <param name="failed">失败数量</param>
+        </member>
+        <member name="E:ThreadLock.CSoftMultiTask`1.OnExceptionOccur">
+            <summary>
+            异常发生时事件
+            </summary>
+        </member>
+        <member name="E:ThreadLock.CSoftMultiTask`1.OnReportProgress">
+            <summary>
+            报告处理进度时发生
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_finishCount">
+            <summary>
+            已处理完成数量，无论是否异常
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_successCount">
+            <summary>
+            处理完成并实现操作数量
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_failedCount">
+            <summary>
+            处理过程中异常数量
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.HybirdLock">
+            <summary>
+            用于触发事件的混合线程锁
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_isRunningStop">
+            <summary>
+            指示处理状态是否为暂停状态
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_isQuit">
+            <summary>
+            指示系统是否需要强制退出
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CSoftMultiTask`1.m_isQuitAfterException">
+            <summary>
+            在发生错误的时候是否强制退出后续的操作
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CSoftMultiTask`1.StartOperater">
+            <summary>
+            启动多线程进行数据处理
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CSoftMultiTask`1.StopOperater">
+            <summary>
+            暂停当前的操作
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CSoftMultiTask`1.ResumeOperater">
+            <summary>
+            恢复暂停的操作
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CSoftMultiTask`1.EndedOperater">
+            <summary>
+            直接手动强制结束操作
+            </summary>
+        </member>
+        <member name="P:ThreadLock.CSoftMultiTask`1.IsQuitAfterException">
+            <summary>
+            在发生错误的时候是否强制退出后续的操作
+            </summary>
+        </member>
+        <member name="T:ThreadLock.CSyncCoordinator">
+            <summary>
+            一个线程协调逻辑类，详细参考书籍《CLR Via C#》page:681
+            这个类可惜没有报告进度的功能
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CSyncCoordinator.AboutToBegin(System.Int32)">
+            <summary>
+            每次的操作任务开始前必须调用该方法
+            </summary>
+            <param name="opsToAdd"></param>
+        </member>
+        <member name="M:ThreadLock.CSyncCoordinator.JustEnded">
+            <summary>
+            在一次任务处理好操作之后，必须调用该方法
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CSyncCoordinator.AllBegun(System.Action{ThreadLock.CoordinationStatus},System.Int32)">
+            <summary>
+            该方法必须在发起所有的操作之后调用
+            </summary>
+            <param name="callback">回调方法</param>
+            <param name="timeout">超时时间</param>
+        </member>
+        <member name="M:ThreadLock.CSyncCoordinator.TimeExpired(System.Object)">
+            <summary>
+            超时的方法
+            </summary>
+            <param name="o"></param>
+        </member>
+        <member name="M:ThreadLock.CSyncCoordinator.Cancel">
+            <summary>
+            取消任务的执行
+            </summary>
+        </member>
+        <member name="M:ThreadLock.CSyncCoordinator.ReportStatus(ThreadLock.CoordinationStatus)">
+            <summary>
+            生成一次报告
+            </summary>
+            <param name="status">报告的状态</param>
+        </member>
+        <member name="M:ThreadLock.CSyncCoordinator.Maxinum(System.Int32@,System.Func{System.Int32,System.Int32})">
+            <summary>
+            乐观的并发方法模型，具体参照《CLR Via C#》page:686
+            </summary>
+            <param name="target">唯一的目标数据</param>
+            <param name="change">修改数据的算法</param>
+            <returns></returns>
+        </member>
+        <member name="T:ThreadLock.CoordinationStatus">
+            <summary>
+            线程的协调逻辑状态
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CoordinationStatus.AllDone">
+            <summary>
+            所有项完成
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CoordinationStatus.Timeout">
+            <summary>
+            超时
+            </summary>
+        </member>
+        <member name="F:ThreadLock.CoordinationStatus.Cancel">
+            <summary>
+            任务取消
+            </summary>
+        </member>
+        <member name="T:ThreadLock.ITheadLock">
+            <summary>
+            线程锁接口
+            </summary>
+        </member>
+        <member name="P:ThreadLock.ITheadLock.IsLocked">
+            <summary>
+            获取当前锁是否在锁定状态(等待)当中
+            </summary>
+        </member>
+        <member name="P:ThreadLock.ITheadLock.AddSleepTime">
+            <summary>
+            在解锁函数中添加等待时间，确保跨线程处理数据时不出现错误
+            </summary>
+        </member>
+        <member name="M:ThreadLock.ITheadLock.Lock">
+            <summary>
+            锁定并阻止当前线程，直到当前锁对象执行 Unlock()
+            </summary>
+        </member>
+        <member name="M:ThreadLock.ITheadLock.Unlock">
+            <summary>
+            释放锁，允许一个或多个等待线程继续执行
+            </summary>
+        </member>
+        <member name="T:ThreadLock.LockerType">
+            <summary>
+            线程锁类型
+            </summary>
+        </member>
+        <member name="F:ThreadLock.LockerType.AutoResetEventLock">
+            <summary>
+            基元内核模式构造同步锁:AutoResetEvent
+            </summary>
+        </member>
+        <member name="F:ThreadLock.LockerType.ExchangeLock">
+            <summary>
+            原子锁，通过原子操作Interlocked.CompareExchange实现“无锁”竞争
+            </summary>
+        </member>
+    </members>
+</doc>
