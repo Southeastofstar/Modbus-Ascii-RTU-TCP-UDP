@@ -9,8 +9,8 @@
       "ModbusCommTest/1.0.0": {
         "dependencies": {
           "ModbusComm": "1.0.0",
-          "Converter.Reference": "1.0.0.0",
-          "ThreadLock.Reference": "1.0.0.0"
+          "Converter": "1.0.0.0",
+          "ThreadLock": "1.0.0.0"
         },
         "runtime": {
           "ModbusCommTest.dll": {}
@@ -108,15 +108,13 @@
       "System.Security.Principal.Windows/4.6.0": {},
       "ModbusComm/1.0.0": {
         "dependencies": {
-          "Converter": "1.0.0",
-          "System.IO.Ports": "4.6.0",
-          "ThreadLock": "1.0.0"
+          "System.IO.Ports": "4.6.0"
         },
         "runtime": {
           "ModbusComm.dll": {}
         }
       },
-      "Converter.Reference/1.0.0.0": {
+      "Converter/1.0.0.0": {
         "runtime": {
           "Converter.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -124,7 +122,7 @@
           }
         }
       },
-      "ThreadLock.Reference/1.0.0.0": {
+      "ThreadLock/1.0.0.0": {
         "runtime": {
           "ThreadLock.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -215,12 +213,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Converter.Reference/1.0.0.0": {
+    "Converter/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "ThreadLock.Reference/1.0.0.0": {
+    "ThreadLock/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

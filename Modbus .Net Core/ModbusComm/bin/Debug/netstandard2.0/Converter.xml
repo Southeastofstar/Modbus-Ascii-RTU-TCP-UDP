@@ -1023,6 +1023,21 @@
             使用时间计时
             </summary>
         </member>
+        <member name="F:Converter.Constants.timer">
+            <summary>
+            耗时计数器，1秒计数一次
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.iCountForTimer">
+            <summary>
+            耗时计数
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.CountLimitForTimer">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Converter.Constants.iUsedTimeLimit">
             <summary>
             允许临时使用10分钟，单位：s
@@ -1038,7 +1053,7 @@
             使用权限到期
             </summary>
         </member>
-        <member name="M:Converter.Constants.AddCount">
+        <member name="M:Converter.Constants.LimitCount">
             <summary>
             加计数，返回值：true - 使用权限到期；false - 使用权限未到期
             </summary>

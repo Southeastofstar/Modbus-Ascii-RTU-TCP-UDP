@@ -32,8 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Converter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Converter">
       <HintPath>..\Modbus\UsedDLL\Converter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -46,8 +45,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="ThreadLock, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ThreadLock">
       <HintPath>..\Modbus\UsedDLL\ThreadLock.dll</HintPath>
     </Reference>
   </ItemGroup>

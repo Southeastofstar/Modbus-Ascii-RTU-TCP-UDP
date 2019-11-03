@@ -1441,6 +1441,16 @@
             使用次数限制
             </summary>
         </member>
+        <member name="F:Converter.Constants.iUsedTimeLimit">
+            <summary>
+            允许临时使用10分钟，单位：s
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.CountLimitForTimer">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Converter.Constants.iCountForUseLimit">
             <summary>
             使用次数计数
@@ -1456,9 +1466,14 @@
             使用时间计时
             </summary>
         </member>
-        <member name="F:Converter.Constants.iUsedTimeLimit">
+        <member name="F:Converter.Constants.timer">
             <summary>
-            允许临时使用10分钟，单位：s
+            耗时计数器，1秒计数一次
+            </summary>
+        </member>
+        <member name="F:Converter.Constants.iCountForTimer">
+            <summary>
+            耗时计数
             </summary>
         </member>
         <member name="F:Converter.Constants.bShowedDialogAboutLimitRightIsDue">
@@ -1466,7 +1481,7 @@
             显示一次提示对话框
             </summary>
         </member>
-        <member name="M:Converter.Constants.AddCount">
+        <member name="M:Converter.Constants.LimitCount">
             <summary>
             加计数，返回值：true - 使用权限到期；false - 使用权限未到期
             </summary>
@@ -3269,6 +3284,19 @@
             <param name="SourceString">目标字符串</param>
             <param name="Delimiter">分隔符</param>
             <returns>字符串</returns>
+        </member>
+        <member name="M:Converter.Strings.FormatDateTime(System.DateTime)">
+            <summary>
+            将指定日期和时间格式化为：YYYY/MM/DD hh:mm:ss.ms，其中毫秒部分保持3个字符，不足部分用 '0' 填充
+            </summary>
+            <param name="TargetDateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Converter.Strings.FormatNow">
+            <summary>
+            将当前日期和时间格式化为：YYYY/MM/DD hh:mm:ss.ms，其中毫秒部分保持3个字符，不足部分用 '0' 填充
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

@@ -25,3 +25,31 @@ F:\Project Data\VS2019 Projects\C# 2019\ModbusCommTest\bin\Debug\netcoreapp3.0\M
 F:\Project Data\VS2019 Projects\C# 2019\ModbusCommTest\obj\Debug\netcoreapp3.0\ModbusCommTest.csproj.CopyComplete
 F:\Project Data\VS2019 Projects\C# 2019\ModbusCommTest\bin\Debug\netcoreapp3.0\Converter.xml
 F:\Project Data\VS2019 Projects\C# 2019\ModbusCommTest\bin\Debug\netcoreapp3.0\ThreadLock.xml
+F:\Project Data\VS2019 Projects\C# 2019\ModbusCommTest\bin\Debug\netcoreapp3.0\Converter.pdb
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\obj\Debug\netcoreapp3.0\ModbusCommTest.csprojAssemblyReference.cache
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\obj\Debug\netcoreapp3.0\ModbusCommTest.AssemblyInfoInputs.cache
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\obj\Debug\netcoreapp3.0\ModbusCommTest.AssemblyInfo.cs
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\obj\Debug\netcoreapp3.0\ModbusCommTest.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\obj\Debug\netcoreapp3.0\ModbusCommTest.pdb
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusCommTest.exe
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusCommTest.deps.json
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusCommTest.runtimeconfig.json
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusCommTest.runtimeconfig.dev.json
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusCommTest.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusCommTest.pdb
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\System.IO.Ports.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\runtimes\linux-arm\native\System.IO.Ports.Native.so
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\runtimes\linux-arm64\native\System.IO.Ports.Native.so
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\runtimes\linux-x64\native\System.IO.Ports.Native.so
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\runtimes\osx-x64\native\System.IO.Ports.Native.dylib
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\runtimes\linux\lib\netstandard2.0\System.IO.Ports.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\runtimes\osx\lib\netstandard2.0\System.IO.Ports.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.IO.Ports.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\Converter.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusComm.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ThreadLock.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusComm.pdb
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ModbusComm.xml
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\Converter.xml
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\bin\Debug\netcoreapp3.0\ThreadLock.xml
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusCommTest\obj\Debug\netcoreapp3.0\ModbusCommTest.csproj.CopyComplete

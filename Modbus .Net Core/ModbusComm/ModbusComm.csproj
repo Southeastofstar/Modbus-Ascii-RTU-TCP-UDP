@@ -13,8 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Converter\Converter.csproj" />
-    <ProjectReference Include="..\ThreadLock\ThreadLock.csproj" />
+    <Reference Include="Converter">
+      <HintPath>..\ModbusCommTest\UsedDLL\Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="ThreadLock">
+      <HintPath>..\ModbusCommTest\UsedDLL\ThreadLock.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -14,3 +14,17 @@ F:\Project Data\VS2019 Projects\C# 2019\ModbusComm\obj\Debug\netstandard2.0\Modb
 F:\Project Data\VS2019 Projects\C# 2019\ModbusComm\obj\Debug\netstandard2.0\ModbusComm.pdb
 F:\Project Data\VS2019 Projects\C# 2019\ModbusComm\bin\Debug\netstandard2.0\Converter.xml
 F:\Project Data\VS2019 Projects\C# 2019\ModbusComm\bin\Debug\netstandard2.0\ThreadLock.xml
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\obj\Debug\netstandard2.0\ModbusComm.AssemblyInfoInputs.cache
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\obj\Debug\netstandard2.0\ModbusComm.AssemblyInfo.cs
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\obj\Debug\netstandard2.0\ModbusComm.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\obj\Debug\netstandard2.0\ModbusComm.pdb
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\ModbusComm.deps.json
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\ModbusComm.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\ModbusComm.pdb
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\ModbusComm.xml
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\Converter.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\ThreadLock.dll
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\Converter.xml
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\bin\Debug\netstandard2.0\ThreadLock.xml
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\obj\Debug\netstandard2.0\ModbusComm.csproj.CopyComplete
+F:\AllGitHubs\Modbus-Ascii-RTU-TCP-UDP\Modbus .Net Core\ModbusComm\obj\Debug\netstandard2.0\ModbusComm.csprojAssemblyReference.cache

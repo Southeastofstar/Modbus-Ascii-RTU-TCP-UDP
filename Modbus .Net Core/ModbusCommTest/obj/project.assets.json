@@ -144,39 +144,17 @@
           }
         }
       },
-      "Converter/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Converter.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Converter.dll": {}
-        }
-      },
       "ModbusComm/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Converter": "1.0.0",
-          "System.IO.Ports": "4.6.0",
-          "ThreadLock": "1.0.0"
+          "System.IO.Ports": "4.6.0"
         },
         "compile": {
           "bin/placeholder/ModbusComm.dll": {}
         },
         "runtime": {
           "bin/placeholder/ModbusComm.dll": {}
-        }
-      },
-      "ThreadLock/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/ThreadLock.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ThreadLock.dll": {}
         }
       }
     }
@@ -459,20 +437,10 @@
         "version.txt"
       ]
     },
-    "Converter/1.0.0": {
-      "type": "project",
-      "path": "../Converter/Converter.csproj",
-      "msbuildProject": "../Converter/Converter.csproj"
-    },
     "ModbusComm/1.0.0": {
       "type": "project",
       "path": "../ModbusComm/ModbusComm.csproj",
       "msbuildProject": "../ModbusComm/ModbusComm.csproj"
-    },
-    "ThreadLock/1.0.0": {
-      "type": "project",
-      "path": "../ThreadLock/ThreadLock.csproj",
-      "msbuildProject": "../ThreadLock/ThreadLock.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -488,11 +456,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Project Data\\VS2019 Projects\\C# 2019\\ModbusCommTest\\ModbusCommTest.csproj",
+      "projectUniqueName": "F:\\AllGitHubs\\Modbus-Ascii-RTU-TCP-UDP\\Modbus .Net Core\\ModbusCommTest\\ModbusCommTest.csproj",
       "projectName": "ModbusCommTest",
-      "projectPath": "F:\\Project Data\\VS2019 Projects\\C# 2019\\ModbusCommTest\\ModbusCommTest.csproj",
+      "projectPath": "F:\\AllGitHubs\\Modbus-Ascii-RTU-TCP-UDP\\Modbus .Net Core\\ModbusCommTest\\ModbusCommTest.csproj",
       "packagesPath": "C:\\Users\\ThomasPeng\\.nuget\\packages\\",
-      "outputPath": "F:\\Project Data\\VS2019 Projects\\C# 2019\\ModbusCommTest\\obj\\",
+      "outputPath": "F:\\AllGitHubs\\Modbus-Ascii-RTU-TCP-UDP\\Modbus .Net Core\\ModbusCommTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\Microsoft\\Xamarin\\NuGet\\",
@@ -513,8 +481,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "F:\\Project Data\\VS2019 Projects\\C# 2019\\ModbusComm\\ModbusComm.csproj": {
-              "projectPath": "F:\\Project Data\\VS2019 Projects\\C# 2019\\ModbusComm\\ModbusComm.csproj"
+            "F:\\AllGitHubs\\Modbus-Ascii-RTU-TCP-UDP\\Modbus .Net Core\\ModbusComm\\ModbusComm.csproj": {
+              "projectPath": "F:\\AllGitHubs\\Modbus-Ascii-RTU-TCP-UDP\\Modbus .Net Core\\ModbusComm\\ModbusComm.csproj"
             }
           }
         }
